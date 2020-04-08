@@ -21,9 +21,10 @@ To understand the objectives and architecture of GPORCA please refer to the foll
 Want to [Contribute](#contribute)?
 
 GPORCA supports various build types: debug, release with debug info, release.
-On x86 systems, GPORCA can also be built as a 32-bit or 64-bit library. You'll
-need CMake 3.1 or higher to build GPORCA. Get it from cmake.org, or your
+You'll need CMake 3.1 or higher to build GPORCA. Get it from cmake.org, or your
 operating system's package manager.
+
+Note: GPDB 6X and later contain their own copy of GPORCA, this version is for GPDB 5X and any other uses.
 
 # First Time Setup
 

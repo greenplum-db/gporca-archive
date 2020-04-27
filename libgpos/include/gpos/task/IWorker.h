@@ -31,7 +31,7 @@
 	while (0)
 
 
-#if (GPOS_SunOS)
+#if defined(GPOS_SunOS)
 #define GPOS_CHECK_ABORT_MAX_INTERVAL_MSEC   (ULONG(2000))
 #else
 #define GPOS_CHECK_ABORT_MAX_INTERVAL_MSEC   (ULONG(1500))

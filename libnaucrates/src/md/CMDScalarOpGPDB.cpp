@@ -41,6 +41,7 @@ CMDScalarOpGPDB::CMDScalarOpGPDB
 	IMDId *m_mdid_inverse_opr,
 	IMDType::ECmpType cmp_type,
 	BOOL returns_null_on_null_input,
+	BOOL is_ndv_preserving,
 	IMdIdArray *mdid_opfamilies_array
 	)
 	:
@@ -55,6 +56,7 @@ CMDScalarOpGPDB::CMDScalarOpGPDB
 	m_mdid_inverse_opr(m_mdid_inverse_opr),
 	m_comparision_type(cmp_type),
 	m_returns_null_on_null_input(returns_null_on_null_input),
+	m_is_ndv_preserving(is_ndv_preserving),
 	m_mdid_opfamilies_array(mdid_opfamilies_array)
 {
 	GPOS_ASSERT(NULL != mdid_opfamilies_array);
@@ -230,6 +232,12 @@ CMDScalarOpGPDB::ReturnsNullOnNullInput() const
 }
 
 
+BOOL
+CMDScalarOpGPDB::IsNDVPreserving() const
+{
+	return m_is_ndv_preserving;
+}
+
 //---------------------------------------------------------------------------
 //	@function:
 //		CMDScalarOpGPDB::ParseCmpType
@@ -266,6 +274,7 @@ CMDScalarOpGPDB::Serialize
 	xml_serializer->AddAttribute(CDXLTokens::GetDXLTokenStr(EdxltokenName), m_mdname->GetMDName());
 	xml_serializer->AddAttribute(CDXLTokens::GetDXLTokenStr(EdxltokenGPDBScalarOpCmpType), IMDType::GetCmpTypeStr(m_comparision_type));
 	xml_serializer->AddAttribute(CDXLTokens::GetDXLTokenStr(EdxltokenReturnsNullOnNullInput), m_returns_null_on_null_input);
+	xml_serializer->AddAttribute(CDXLTokens::GetDXLTokenStr(EdxltokenIsNDVPreserving), m_is_ndv_preserving);
 
 	Edxltoken dxl_token_array[6] = {
 							EdxltokenGPDBScalarOpLeftTypeId, EdxltokenGPDBScalarOpRightTypeId, 

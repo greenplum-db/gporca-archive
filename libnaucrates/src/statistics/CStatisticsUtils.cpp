@@ -1176,6 +1176,7 @@ CStatisticsUtils::DeriveStatsForDynamicScan
 														scalar_expr,
 														output_colrefs,
 														outer_refs,
+														true, // semi-join
 														&unsupported_pred_stats
 														);
 
@@ -1859,9 +1860,7 @@ CStatisticsUtils::IsStatsCmpTypeNdvEq
 	 CStatsPred::EStatsCmpType stats_cmp_type
 	)
 {
-	return (CStatsPred::EstatscmptEqNDVOuter == stats_cmp_type ||
-			CStatsPred::EstatscmptEqNDVInner == stats_cmp_type
-			);
+	return (CStatsPred::EstatscmptEqNDV == stats_cmp_type);
 }
 //---------------------------------------------------------------------------
 //	@function:

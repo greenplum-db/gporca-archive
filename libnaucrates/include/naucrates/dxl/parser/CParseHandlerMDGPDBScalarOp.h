@@ -62,6 +62,9 @@ namespace gpdxl
 			// does operator return NULL on NULL input?
 			BOOL m_returns_null_on_null_input;
 
+			// preserves NDVs of inputs
+			BOOL m_is_ndv_preserving;
+
 			// private copy ctor
 			CParseHandlerMDGPDBScalarOp(const CParseHandlerMDGPDBScalarOp &);
 			

@@ -1150,14 +1150,14 @@ CGroupExpression::OsPrintCostContexts
 	(
 	IOstream &os,
 	const CHAR *szPrefix
-	)
+	) const
 {
 	if (Pop()->FPhysical() && GPOS_FTRACE(EopttracePrintOptimizationContext))
 	{
 		// print cost contexts
 		os << szPrefix << szPrefix << "Cost Ctxts:" << std::endl;
 		CCostContext *pcc = NULL;
-		ShtIter shtit(this->Sht());
+		ShtIter shtit(const_cast<CGroupExpression *>(this)->Sht());
 		while (shtit.Advance())
 		{
 			{
@@ -1245,9 +1245,18 @@ CGroupExpression::ContainsCircularDependencies()
 IOstream &
 CGroupExpression::OsPrint
 	(
+	IOstream &os
+	) const
+{
+	return OsPrintWithPrefix(os, "");
+}
+
+IOstream &
+CGroupExpression::OsPrintWithPrefix
+	(
 	IOstream &os,
 	const CHAR *szPrefix
-	)
+	) const
 {
 	os << szPrefix << m_id << ": ";
 	(void) m_pop->OsPrint(os);
@@ -1300,7 +1309,7 @@ CGroupExpression::OsPrint
 //
 //---------------------------------------------------------------------------
 void
-CGroupExpression::DbgPrint()
+CGroupExpression::DbgPrintWithProperties()
 {
 	CAutoTraceFlag atf(EopttracePrintGroupProperties, true);
 	CAutoTrace at(m_mp);

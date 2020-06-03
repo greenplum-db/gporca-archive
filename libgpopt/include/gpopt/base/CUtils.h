@@ -100,10 +100,10 @@ namespace gpopt
 			// print memo to debug trace
 			static
 			void PrintMemo(CMemo *pmemo);
+#endif // GPOS_DEBUG
 
 			static
 			IOstream &OsPrintDrgPcoldesc(IOstream &os, CColumnDescriptorArray *pdrgpcoldescIncludedCols, ULONG length);
-#endif // GPOS_DEBUG
 
 			//-------------------------------------------------------------------
 			// Helpers for generating expressions

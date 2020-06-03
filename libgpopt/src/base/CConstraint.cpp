@@ -1039,13 +1039,4 @@ CConstraint::PrintConjunctionDisjunction
 	return os;
 }
 
-#ifdef GPOS_DEBUG
-void
-CConstraint::DbgPrint() const
-{
-	CAutoTrace at(m_mp);
-	(void) this->OsPrint(at.Os());
-}
-#endif  // GPOS_DEBUG
-
 // EOF

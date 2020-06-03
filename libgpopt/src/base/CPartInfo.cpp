@@ -119,16 +119,6 @@ CPartInfo::CPartInfoEntry::OsPrint
 	return os;
 }
 
-#ifdef GPOS_DEBUG
-void
-CPartInfo::CPartInfoEntry::DbgPrint() const
-{
-	CMemoryPool *mp = COptCtxt::PoctxtFromTLS()->Pmp();
-	CAutoTrace at(mp);
-	(void) this->OsPrint(at.Os());
-}
-#endif // GPOS_DEBUG
-
 
 //---------------------------------------------------------------------------
 //	@function:
@@ -494,16 +484,5 @@ CPartInfo::OsPrint
 
 	return os;
 }
-
-#ifdef GPOS_DEBUG
-void
-CPartInfo::DbgPrint() const
-{
-	CMemoryPool *mp = COptCtxt::PoctxtFromTLS()->Pmp();
-	CAutoTrace at(mp);
-	(void) this->OsPrint(at.Os());
-}
-#endif // GPOS_DEBUG
-
 
 // EOF

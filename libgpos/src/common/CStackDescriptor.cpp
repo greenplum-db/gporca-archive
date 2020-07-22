@@ -91,7 +91,7 @@ CStackDescriptor::BackTrace
 	}
 }
 
-#elif (GPOS_i386 || GPOS_i686 || GPOS_x86_64)
+#elif (GPOS_aarch64 || GPOS_i386 || GPOS_i686 || GPOS_x86_64)
 
 //---------------------------------------------------------------------------
 //	@function:

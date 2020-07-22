@@ -29,6 +29,10 @@
 #define GPOS_ASMFP asm volatile ("movq %%rbp, %0" : "=g" (ulp));
 #define GPOS_ASMSP asm volatile ("movq %%rsp, %0" : "=g" (ulp));
 
+#elif (GPOS_aarch64) && (GPOS_64BIT)
+#define GPOS_ASMFP asm volatile ("mov %0, fp" : "=g" (ulp));
+#define GPOS_ASMSP asm volatile ("mov %0, sp" : "=g" (ulp));
+
 #elif (GPOS_sparc) && (GPOS_32BIT)
 #define GPOS_ASMFP asm volatile ("st %%fp, %0" : "=g" (ulp));
 #define GPOS_ASMSP asm volatile ("st %%sp, %0" : "=g" (ulp));

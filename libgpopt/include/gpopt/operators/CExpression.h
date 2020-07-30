@@ -26,6 +26,8 @@
 #include "gpopt/base/CPrintPrefix.h"
 #include "gpopt/operators/COperator.h"
 #include "gpopt/base/CKeyCollection.h"
+#include "gpopt/metadata/CTableDescriptor.h"
+
 
 namespace gpopt
 {
@@ -335,6 +337,7 @@ namespace gpopt
 			CFunctionalDependencyArray *DeriveFunctionalDependencies();
 			CPartInfo *DerivePartitionInfo();
 			BOOL DeriveHasPartialIndexes();
+			CTableDescriptor *DeriveTableDescriptor();
 
 			// Scalar property accessors - derived as needed
 			CColRefSet *DeriveDefinedColumns();

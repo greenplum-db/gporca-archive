@@ -172,7 +172,8 @@ CGroup::CGroup
 	m_pdrgpexprJoinKeysInner(NULL),
 	m_pdp(NULL),
 	m_pstats(NULL),
-	m_pexprScalar(NULL),
+	m_pexprScalarRep(NULL),
+	m_pexprScalarRepIsExact(false),
 	m_pccDummy(NULL),
 	m_pgroupDuplicate(NULL),
 	m_plinkmap(NULL),
@@ -220,7 +221,7 @@ CGroup::~CGroup()
 	CRefCount::SafeRelease(m_pdrgpexprJoinKeysOuter);
 	CRefCount::SafeRelease(m_pdrgpexprJoinKeysInner);
 	CRefCount::SafeRelease(m_pdp);
-	CRefCount::SafeRelease(m_pexprScalar);
+	CRefCount::SafeRelease(m_pexprScalarRep);
 	CRefCount::SafeRelease(m_pccDummy);
 	CRefCount::SafeRelease(m_pstats);
 	m_plinkmap->Release();
@@ -1060,7 +1061,7 @@ void
 CGroup::CreateScalarExpression()
 {
 	GPOS_ASSERT(FScalar());
-	GPOS_ASSERT(NULL == m_pexprScalar);
+	GPOS_ASSERT(NULL == m_pexprScalarRep);
 
 	CGroupExpression *pgexprFirst = NULL;
 	{
@@ -1068,17 +1069,29 @@ CGroup::CreateScalarExpression()
 		pgexprFirst = gp.PgexprFirst();
 	}
 	GPOS_ASSERT(NULL != pgexprFirst);
+	COperator *pop = pgexprFirst->Pop();
 
-	// if group has subquery, cache only the root operator
-	// since the underlying tree have relational operator
-	if (CDrvdPropScalar::GetDrvdScalarProps(Pdp())->HasSubquery())
+	if (CUtils::FSubquery(pop))
 	{
-		COperator *pop = pgexprFirst->Pop();
-		pop->AddRef();
-		m_pexprScalar = GPOS_NEW(m_mp) CExpression (m_mp, pop);
+		if (COperator::EopScalarSubquery ==  pop->Eopid())
+		{
+			CScalarSubquery *subquery_pop = CScalarSubquery::PopConvert(pop);
+			const CColRef *subquery_colref = subquery_pop->Pcr();
 
+			// replace the scalar subquery with a NULL value of the same type
+			m_pexprScalarRep = CUtils::PexprScalarConstNull(m_mp, subquery_colref->RetrieveType(), subquery_colref->TypeModifier());
+		}
+		else
+		{
+			// for subqueries that are predicates, make a "true" constant
+			m_pexprScalarRep = CUtils::PexprScalarConstBool(m_mp, true /* make a "true" constant*/);
+		}
+
+		m_pexprScalarRepIsExact = false;
 		return;
 	}
+
+	m_pexprScalarRepIsExact = true;
 
 	CExpressionArray *pdrgpexpr = GPOS_NEW(m_mp) CExpressionArray(m_mp);
 	const ULONG arity = pgexprFirst->Arity();
@@ -1087,14 +1100,18 @@ CGroup::CreateScalarExpression()
 		CGroup *pgroupChild = (*pgexprFirst)[ul];
 		GPOS_ASSERT(pgroupChild->FScalar());
 
-		CExpression *pexprChild = pgroupChild->PexprScalar();
+		CExpression *pexprChild = pgroupChild->PexprScalarRep();
 		pexprChild->AddRef();
 		pdrgpexpr->Append(pexprChild);
+
+		if (!pgroupChild->FScalarRepIsExact())
+		{
+			m_pexprScalarRepIsExact = false;
+		}
 	}
 
-	COperator *pop = pgexprFirst->Pop();
 	pop->AddRef();
-	m_pexprScalar = GPOS_NEW(m_mp) CExpression(m_mp, pop, pdrgpexpr);
+	m_pexprScalarRep = GPOS_NEW(m_mp) CExpression(m_mp, pop, pdrgpexpr);
 }
 
 
@@ -1773,10 +1790,14 @@ CGroup::OsPrintGrpScalarProps
 {
 	GPOS_ASSERT(FScalar());
 
-	if (NULL != PexprScalar())
+	if (NULL != PexprScalarRep())
 	{
-		os << szPrefix << "Scalar Expression: "<< std::endl
-			<< szPrefix << *PexprScalar() << std::endl;
+		os << szPrefix << "Scalar Expression:";
+		if (!FScalarRepIsExact())
+		{
+			os << " (subqueries replaced with true or NULL):";
+		}
+		os << std::endl << szPrefix << *PexprScalarRep() << std::endl;
 	}
 
 	GPOS_CHECK_ABORT;

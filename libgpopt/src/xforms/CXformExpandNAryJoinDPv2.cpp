@@ -70,7 +70,7 @@ CXformExpandNAryJoinDPv2::Exfp
 	)
 	const
 {
-	return CXformUtils::ExfpExpandJoinOrder(exprhdl);
+	return CXformUtils::ExfpExpandJoinOrder(exprhdl, this);
 }
 
 
@@ -140,8 +140,12 @@ CXformExpandNAryJoinDPv2::Transform
 		innerJoinPreds = CPredicateUtils::PdrgpexprConjuncts(mp, pexprScalar);
 	}
 
+	CColRefSet *outerRefs = pexpr->DeriveOuterReferences();
+
+	outerRefs->AddRef();
+
 	// create join order using dynamic programming v2, record topk results in jodp
-	CJoinOrderDPv2 jodp(mp, pdrgpexpr, innerJoinPreds, onPreds, childPredIndexes);
+	CJoinOrderDPv2 jodp(mp, pdrgpexpr, innerJoinPreds, onPreds, childPredIndexes, outerRefs);
 	jodp.PexprExpand();
 
 	// Retrieve top K join orders from jodp and add as alternatives

@@ -70,7 +70,7 @@ CXformPushDownLeftOuterJoin::Exfp
 	)
 	const
 {
-	CExpression *pexprScalar = exprhdl.PexprScalarChild(2);
+	CExpression *pexprScalar = exprhdl.PexprScalarRepChild(2);
 	if (COperator::EopScalarConst == pexprScalar->Pop()->Eopid())
 	{
 		return CXform::ExfpNone;

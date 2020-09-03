@@ -603,7 +603,7 @@ CCostModelGPDB::CostScalarAgg
 	// get the number of aggregate columns
 	const ULONG ulAggCols = exprhdl.DeriveUsedColumns(1)->Size();
 	// get the number of aggregate functions
-	const ULONG ulAggFunctions = exprhdl.PexprScalarChild(1)->Arity();
+	const ULONG ulAggFunctions = exprhdl.PexprScalarRepChild(1)->Arity();
 
 	const CDouble dHashAggInputTupWidthCostUnit = pcmgpdb->GetCostModelParams()->PcpLookup(CCostModelParamsGPDB::EcpHashAggInputTupWidthCostUnit)->Get();
 	GPOS_ASSERT(0 < dHashAggInputTupWidthCostUnit);
@@ -922,7 +922,7 @@ CCostModelGPDB::CostHashJoin
 	GPOS_ASSERT(0 < dPenalizeHJSkewUpperLimit);
 
 	// get the number of columns used in join condition
-	CExpression *pexprJoinCond= exprhdl.PexprScalarChild(2);
+	CExpression *pexprJoinCond= exprhdl.PexprScalarRepChild(2);
 	CColRefSet *pcrsUsed = pexprJoinCond->DeriveUsedColumns();
 	const ULONG ulColsUsed = pcrsUsed->Size();
 
@@ -1070,7 +1070,7 @@ CCostModelGPDB::CostMergeJoin
 	GPOS_ASSERT(0 < dOutputTupCostUnit);
 
 	// get the number of columns used in join condition
-	CExpression *pexprJoinCond= exprhdl.PexprScalarChild(2);
+	CExpression *pexprJoinCond= exprhdl.PexprScalarRepChild(2);
 	CColRefSet *pcrsUsed = pexprJoinCond->DeriveUsedColumns();
 	const ULONG ulColsUsed = pcrsUsed->Size();
 
@@ -1127,7 +1127,7 @@ CCostModelGPDB::CostIndexNLJoin
 	GPOS_ASSERT(0 < dJoinOutputTupCostUnit);
 
 	// get the number of columns used in join condition
-	CExpression *pexprJoinCond= exprhdl.PexprScalarChild(2);
+	CExpression *pexprJoinCond= exprhdl.PexprScalarRepChild(2);
 	CColRefSet *pcrsUsed = pexprJoinCond->DeriveUsedColumns();
 	const ULONG ulColsUsed = pcrsUsed->Size();
 
@@ -1211,7 +1211,7 @@ CCostModelGPDB::CostNLJoin
 	GPOS_ASSERT(0 < dNLJFactor);
 
 	// get the number of columns used in join condition
-	CExpression *pexprJoinCond= exprhdl.PexprScalarChild(2);
+	CExpression *pexprJoinCond= exprhdl.PexprScalarRepChild(2);
 	CColRefSet *pcrsUsed = pexprJoinCond->DeriveUsedColumns();
 	const ULONG ulColsUsed = pcrsUsed->Size();
 
@@ -1494,7 +1494,7 @@ CCostModelGPDB::CostBitmapTableScan
 		 COperator::EopPhysicalDynamicBitmapTableScan == exprhdl.Pop()->Eopid());
 
 	CCost result(0.0);
-	CExpression *pexprIndexCond = exprhdl.PexprScalarChild(1 /*child_index*/);
+	CExpression *pexprIndexCond = exprhdl.PexprScalarRepChild(1 /*child_index*/);
 	CColRefSet *pcrsUsed = pexprIndexCond->DeriveUsedColumns();
 	CColRefSet *outerRefs = exprhdl.DeriveOuterReferences();
 	CColRefSet *pcrsLocalUsed = GPOS_NEW(mp) CColRefSet(mp, *pcrsUsed);

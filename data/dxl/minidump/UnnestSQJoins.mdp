@@ -1268,7 +1268,7 @@ WHERE
     <dxl:Plan Id="0" SpaceSize="41230">
       <dxl:GatherMotion InputSegments="0,1" OutputSegments="-1">
         <dxl:Properties>
-          <dxl:Cost StartupCost="0" TotalCost="43434.041016" Rows="197964.000000" Width="148"/>
+          <dxl:Cost StartupCost="0" TotalCost="559.354453" Rows="199.680000" Width="148"/>
         </dxl:Properties>
         <dxl:ProjList>
           <dxl:ProjElem ColId="26" Alias="oid">
@@ -1291,7 +1291,7 @@ WHERE
         <dxl:SortingColumnList/>
         <dxl:Result>
           <dxl:Properties>
-            <dxl:Cost StartupCost="0" TotalCost="29127.048828" Rows="197964.000000" Width="148"/>
+            <dxl:Cost StartupCost="0" TotalCost="543.924453" Rows="199.680000" Width="148"/>
           </dxl:Properties>
           <dxl:ProjList>
             <dxl:ProjElem ColId="26" Alias="oid">
@@ -1656,11 +1656,11 @@ WHERE
                     <dxl:And>
                       <dxl:Comparison ComparisonOperator="&lt;&gt;" OperatorMdid="0.643.1.0">
                         <dxl:Ident ColId="0" ColName="amname" TypeMdid="0.19.1.0"/>
-                        <dxl:ConstValue TypeMdid="0.19.1.0" Value="Z2lzdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&#10;AAAAAAAAAAAAAAAAAAAAAAAAAA=="/>
+                        <dxl:ConstValue TypeMdid="0.19.1.0" Value="Z2lzdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&#xA;AAAAAAAAAAAAAAAAAAAAAAAAAA=="/>
                       </dxl:Comparison>
                       <dxl:Comparison ComparisonOperator="&lt;&gt;" OperatorMdid="0.643.1.0">
                         <dxl:Ident ColId="0" ColName="amname" TypeMdid="0.19.1.0"/>
-                        <dxl:ConstValue TypeMdid="0.19.1.0" Value="Z2luAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&#10;AAAAAAAAAAAAAAAAAAAAAAAAAA=="/>
+                        <dxl:ConstValue TypeMdid="0.19.1.0" Value="Z2luAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&#xA;AAAAAAAAAAAAAAAAAAAAAAAAAA=="/>
                       </dxl:Comparison>
                     </dxl:And>
                   </dxl:Filter>

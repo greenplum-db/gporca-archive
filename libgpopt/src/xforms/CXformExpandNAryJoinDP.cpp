@@ -82,7 +82,7 @@ CXformExpandNAryJoinDP::Exfp
 		return CXform::ExfpNone;
 	}
 
-	return CXformUtils::ExfpExpandJoinOrder(exprhdl);
+	return CXformUtils::ExfpExpandJoinOrder(exprhdl, this);
 }
 
 

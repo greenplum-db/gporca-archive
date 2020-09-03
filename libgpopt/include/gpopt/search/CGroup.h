@@ -202,8 +202,11 @@ namespace gpopt
 			// group stats
 			IStatistics *m_pstats;
 
-			// scalar expression for stat derivation
-			CExpression *m_pexprScalar;
+			// scalar expression for stat derivation (subqueries substituted with a dummy)
+			CExpression *m_pexprScalarRep;
+
+			// scalar expression above is exactly the same as the scalar expr in the group
+			BOOL m_pexprScalarRepIsExact;
 
 			// dummy cost context used in scalar groups for plan enumeration
 			CCostContext *m_pccDummy;
@@ -402,10 +405,16 @@ namespace gpopt
 				return m_pdrgpexprJoinKeysInner;
 			}
 
-			// return cached scalar expression
-			CExpression *PexprScalar() const
+			// return a representative cached scalar expression usable for stat derivation etc.
+			CExpression *PexprScalarRep() const
 			{
-				return m_pexprScalar;
+				return m_pexprScalarRep;
+			}
+
+			// is the value returned by PexprScalarRep() exact?
+			BOOL FScalarRepIsExact() const
+			{
+				return m_pexprScalarRepIsExact;
 			}
 
 			// return dummy cost context for scalar group

@@ -374,5 +374,17 @@ rm -rf /usr/local/lib/libgpos.so*
 <a name="contribute"></a>
 # How to Contribute
 
+
+ORCA has a [style guide](StyleGuilde.md), try to follow the existing style in your contribution to be consistent.
+
+[clang-format]: https://clang.llvm.org/docs/ClangFormat.html
+A set of [clang-format]-based rules are enforced in CI. Your editor or IDE may automatically support it. When in doubt, check formatting locally before submitting your PR:
+
+```
+CLANG_FORMAT=clang-format scripts/fmt chk
+```
+
+For more information, head over to the [formatting README](README.format.md).
+
 Please see the [CONTRIBUTING](CONTRIBUTING.md) file for details.
 

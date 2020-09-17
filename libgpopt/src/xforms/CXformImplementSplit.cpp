@@ -26,23 +26,15 @@ using namespace gpopt;
 //		Ctor
 //
 //---------------------------------------------------------------------------
-CXformImplementSplit::CXformImplementSplit
-	(
-	CMemoryPool *mp
-	)
-	:
-	CXformImplementation
-		(
-		 // pattern
-		GPOS_NEW(mp) CExpression
-				(
-				mp,
-				GPOS_NEW(mp) CLogicalSplit(mp),
-				GPOS_NEW(mp) CExpression(mp, GPOS_NEW(mp) CPatternLeaf(mp)),
-				GPOS_NEW(mp) CExpression(mp, GPOS_NEW(mp) CPatternLeaf(mp))
-				)
-		)
-{}
+CXformImplementSplit::CXformImplementSplit(CMemoryPool *mp)
+	: CXformImplementation(
+		  // pattern
+		  GPOS_NEW(mp) CExpression(
+			  mp, GPOS_NEW(mp) CLogicalSplit(mp),
+			  GPOS_NEW(mp) CExpression(mp, GPOS_NEW(mp) CPatternLeaf(mp)),
+			  GPOS_NEW(mp) CExpression(mp, GPOS_NEW(mp) CPatternLeaf(mp))))
+{
+}
 
 //---------------------------------------------------------------------------
 //	@function:
@@ -53,11 +45,8 @@ CXformImplementSplit::CXformImplementSplit
 //
 //---------------------------------------------------------------------------
 CXform::EXformPromise
-CXformImplementSplit::Exfp
-	(
-	CExpressionHandle & // exprhdl
-	)
-	const
+CXformImplementSplit::Exfp(CExpressionHandle &	// exprhdl
+) const
 {
 	return CXform::ExfpHigh;
 }
@@ -72,13 +61,8 @@ CXformImplementSplit::Exfp
 //
 //---------------------------------------------------------------------------
 void
-CXformImplementSplit::Transform
-	(
-	CXformContext *pxfctxt,
-	CXformResult *pxfres,
-	CExpression *pexpr
-	)
-	const
+CXformImplementSplit::Transform(CXformContext *pxfctxt, CXformResult *pxfres,
+								CExpression *pexpr) const
 {
 	GPOS_ASSERT(NULL != pxfctxt);
 	GPOS_ASSERT(FPromising(pxfctxt->Pmp(), this, pexpr));
@@ -106,14 +90,11 @@ CXformImplementSplit::Transform
 	pexprProjList->AddRef();
 
 	// create physical Split
-	CExpression *pexprAlt =
-		GPOS_NEW(mp) CExpression
-			(
-			mp,
-			GPOS_NEW(mp) CPhysicalSplit(mp, pdrgpcrDelete, pdrgpcrInsert, pcrCtid, pcrSegmentId, pcrAction, pcrTupleOid),
-			pexprChild,
-			pexprProjList
-			);
+	CExpression *pexprAlt = GPOS_NEW(mp) CExpression(
+		mp,
+		GPOS_NEW(mp) CPhysicalSplit(mp, pdrgpcrDelete, pdrgpcrInsert, pcrCtid,
+									pcrSegmentId, pcrAction, pcrTupleOid),
+		pexprChild, pexprProjList);
 	// add alternative to transformation result
 	pxfres->Add(pexprAlt);
 }

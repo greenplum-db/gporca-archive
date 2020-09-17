@@ -24,14 +24,8 @@ using namespace gpdxl;
 //		Constructor
 //
 //---------------------------------------------------------------------------
-CDXLScalarHashExpr::CDXLScalarHashExpr
-	(
-	CMemoryPool *mp,
-	IMDId *mdid_type
-	)
-	:
-	CDXLScalar(mp),
-	m_mdid_type(mdid_type)
+CDXLScalarHashExpr::CDXLScalarHashExpr(CMemoryPool *mp, IMDId *mdid_type)
+	: CDXLScalar(mp), m_mdid_type(mdid_type)
 {
 	GPOS_ASSERT(m_mdid_type->IsValid());
 }
@@ -101,20 +95,19 @@ CDXLScalarHashExpr::MdidType() const
 //
 //---------------------------------------------------------------------------
 void
-CDXLScalarHashExpr::SerializeToDXL
-	(
-	CXMLSerializer *xml_serializer,
-	const CDXLNode *node
-	)
-	const
+CDXLScalarHashExpr::SerializeToDXL(CXMLSerializer *xml_serializer,
+								   const CDXLNode *node) const
 {
 	const CWStringConst *element_name = GetOpNameStr();
-	xml_serializer->OpenElement(CDXLTokens::GetDXLTokenStr(EdxltokenNamespacePrefix), element_name);
+	xml_serializer->OpenElement(
+		CDXLTokens::GetDXLTokenStr(EdxltokenNamespacePrefix), element_name);
 
-	m_mdid_type->Serialize(xml_serializer, CDXLTokens::GetDXLTokenStr(EdxltokenTypeId));
+	m_mdid_type->Serialize(xml_serializer,
+						   CDXLTokens::GetDXLTokenStr(EdxltokenTypeId));
 
 	node->SerializeChildrenToDXL(xml_serializer);
-	xml_serializer->CloseElement(CDXLTokens::GetDXLTokenStr(EdxltokenNamespacePrefix), element_name);
+	xml_serializer->CloseElement(
+		CDXLTokens::GetDXLTokenStr(EdxltokenNamespacePrefix), element_name);
 }
 
 #ifdef GPOS_DEBUG
@@ -127,25 +120,23 @@ CDXLScalarHashExpr::SerializeToDXL
 //
 //---------------------------------------------------------------------------
 void
-CDXLScalarHashExpr::AssertValid
-	(
-	const CDXLNode *node,
-	BOOL validate_children 
-	) 
-	const
+CDXLScalarHashExpr::AssertValid(const CDXLNode *node,
+								BOOL validate_children) const
 {
 	GPOS_ASSERT(1 == node->Arity());
 	CDXLNode *child_dxlnode = (*node)[0];
-	
-	GPOS_ASSERT(EdxloptypeScalar == child_dxlnode->GetOperator()->GetDXLOperatorType());
+
+	GPOS_ASSERT(EdxloptypeScalar ==
+				child_dxlnode->GetOperator()->GetDXLOperatorType());
 
 	if (validate_children)
 	{
-		child_dxlnode->GetOperator()->AssertValid(child_dxlnode, validate_children);
+		child_dxlnode->GetOperator()->AssertValid(child_dxlnode,
+												  validate_children);
 	}
 }
 
-#endif // GPOS_DEBUG
+#endif	// GPOS_DEBUG
 
 
 // EOF

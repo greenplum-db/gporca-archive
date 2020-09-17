@@ -33,34 +33,27 @@ using namespace gpopt;
 //		Ctor
 //
 //---------------------------------------------------------------------------
-CTableDescriptor::CTableDescriptor
-	(
-	CMemoryPool *mp,
-	IMDId *mdid,
-	const CName &name,
-	BOOL convert_hash_to_random,
-	IMDRelation::Ereldistrpolicy rel_distr_policy,
-	IMDRelation::Erelstoragetype erelstoragetype,
-	ULONG ulExecuteAsUser
-	)
-	:
-	m_mp(mp),
-	m_mdid(mdid),
-	m_name(mp, name),
-	m_pdrgpcoldesc(NULL),
-	m_rel_distr_policy(rel_distr_policy),
-	m_erelstoragetype(erelstoragetype),
-	m_pdrgpcoldescDist(NULL),
-	m_convert_hash_to_random(convert_hash_to_random),
-	m_pdrgpulPart(NULL),
-	m_pdrgpbsKeys(NULL),
-	m_num_of_partitions(0),
-	m_execute_as_user_id(ulExecuteAsUser),
-	m_fHasPartialIndexes(FDescriptorWithPartialIndexes())
+CTableDescriptor::CTableDescriptor(
+	CMemoryPool *mp, IMDId *mdid, const CName &name,
+	BOOL convert_hash_to_random, IMDRelation::Ereldistrpolicy rel_distr_policy,
+	IMDRelation::Erelstoragetype erelstoragetype, ULONG ulExecuteAsUser)
+	: m_mp(mp),
+	  m_mdid(mdid),
+	  m_name(mp, name),
+	  m_pdrgpcoldesc(NULL),
+	  m_rel_distr_policy(rel_distr_policy),
+	  m_erelstoragetype(erelstoragetype),
+	  m_pdrgpcoldescDist(NULL),
+	  m_convert_hash_to_random(convert_hash_to_random),
+	  m_pdrgpulPart(NULL),
+	  m_pdrgpbsKeys(NULL),
+	  m_num_of_partitions(0),
+	  m_execute_as_user_id(ulExecuteAsUser),
+	  m_fHasPartialIndexes(FDescriptorWithPartialIndexes())
 {
 	GPOS_ASSERT(NULL != mp);
 	GPOS_ASSERT(mdid->IsValid());
-	
+
 	m_pdrgpcoldesc = GPOS_NEW(m_mp) CColumnDescriptorArray(m_mp);
 	m_pdrgpcoldescDist = GPOS_NEW(m_mp) CColumnDescriptorArray(m_mp);
 	m_pdrgpulPart = GPOS_NEW(m_mp) ULongPtrArray(m_mp);
@@ -79,7 +72,7 @@ CTableDescriptor::CTableDescriptor
 CTableDescriptor::~CTableDescriptor()
 {
 	m_mdid->Release();
-	
+
 	m_pdrgpcoldesc->Release();
 	m_pdrgpcoldescDist->Release();
 	m_pdrgpulPart->Release();
@@ -100,7 +93,7 @@ CTableDescriptor::ColumnCount() const
 {
 	// array allocated in ctor
 	GPOS_ASSERT(NULL != m_pdrgpcoldesc);
-	
+
 	return m_pdrgpcoldesc->Size();
 }
 
@@ -114,16 +107,12 @@ CTableDescriptor::ColumnCount() const
 //
 //---------------------------------------------------------------------------
 ULONG
-CTableDescriptor::UlPos
-	(
-	const CColumnDescriptor *pcoldesc,
-	const CColumnDescriptorArray *pdrgpcoldesc
-	)
-	const
+CTableDescriptor::UlPos(const CColumnDescriptor *pcoldesc,
+						const CColumnDescriptorArray *pdrgpcoldesc) const
 {
 	GPOS_ASSERT(NULL != pcoldesc);
 	GPOS_ASSERT(NULL != pdrgpcoldesc);
-	
+
 	ULONG arity = pdrgpcoldesc->Size();
 	for (ULONG ul = 0; ul < arity; ul++)
 	{
@@ -132,7 +121,7 @@ CTableDescriptor::UlPos
 			return ul;
 		}
 	}
-	
+
 	return arity;
 }
 
@@ -145,11 +134,7 @@ CTableDescriptor::UlPos
 //
 //---------------------------------------------------------------------------
 ULONG
-CTableDescriptor::GetAttributePosition
-	(
-	INT attno
-	)
-	const
+CTableDescriptor::GetAttributePosition(INT attno) const
 {
 	GPOS_ASSERT(NULL != m_pdrgpcoldesc);
 	ULONG ulPos = gpos::ulong_max;
@@ -177,13 +162,10 @@ CTableDescriptor::GetAttributePosition
 //
 //---------------------------------------------------------------------------
 void
-CTableDescriptor::AddColumn
-	(
-	CColumnDescriptor *pcoldesc
-	)
+CTableDescriptor::AddColumn(CColumnDescriptor *pcoldesc)
 {
 	GPOS_ASSERT(NULL != pcoldesc);
-	
+
 	m_pdrgpcoldesc->Append(pcoldesc);
 }
 
@@ -192,15 +174,12 @@ CTableDescriptor::AddColumn
 //		CTableDescriptor::AddDistributionColumn
 //
 //	@doc:
-//		Add the column at the specified position to the array of column 
+//		Add the column at the specified position to the array of column
 //		descriptors defining a hash distribution
 //
 //---------------------------------------------------------------------------
 void
-CTableDescriptor::AddDistributionColumn
-	(
-	ULONG ulPos
-	)
+CTableDescriptor::AddDistributionColumn(ULONG ulPos)
 {
 	CColumnDescriptor *pcoldesc = (*m_pdrgpcoldesc)[ulPos];
 	pcoldesc->AddRef();
@@ -212,15 +191,12 @@ CTableDescriptor::AddDistributionColumn
 //		CTableDescriptor::AddPartitionColumn
 //
 //	@doc:
-//		Add the column at the specified position to the array of partition column 
+//		Add the column at the specified position to the array of partition column
 //		descriptors
 //
 //---------------------------------------------------------------------------
 void
-CTableDescriptor::AddPartitionColumn
-	(
-	ULONG ulPos
-	)
+CTableDescriptor::AddPartitionColumn(ULONG ulPos)
 {
 	m_pdrgpulPart->Append(GPOS_NEW(m_mp) ULONG(ulPos));
 }
@@ -234,14 +210,11 @@ CTableDescriptor::AddPartitionColumn
 //
 //---------------------------------------------------------------------------
 BOOL
-CTableDescriptor::FAddKeySet
-	(
-	CBitSet *pbs
-	)
+CTableDescriptor::FAddKeySet(CBitSet *pbs)
 {
 	GPOS_ASSERT(NULL != pbs);
 	GPOS_ASSERT(pbs->Size() <= m_pdrgpcoldesc->Size());
-	
+
 	const ULONG size = m_pdrgpbsKeys->Size();
 	BOOL fFound = false;
 	for (ULONG ul = 0; !fFound && ul < size; ul++)
@@ -267,14 +240,10 @@ CTableDescriptor::FAddKeySet
 //
 //---------------------------------------------------------------------------
 const CColumnDescriptor *
-CTableDescriptor::Pcoldesc
-	(
-	ULONG ulCol
-	)
-	const
+CTableDescriptor::Pcoldesc(ULONG ulCol) const
 {
 	GPOS_ASSERT(ulCol < ColumnCount());
-	
+
 	return (*m_pdrgpcoldesc)[ulCol];
 }
 
@@ -288,11 +257,7 @@ CTableDescriptor::Pcoldesc
 //
 //---------------------------------------------------------------------------
 IOstream &
-CTableDescriptor::OsPrint
-	(
-	IOstream &os
-	)
-	const
+CTableDescriptor::OsPrint(IOstream &os) const
 {
 	m_name.OsPrint(os);
 	os << ": (";
@@ -332,8 +297,7 @@ CTableDescriptor::IndexCount()
 //
 //---------------------------------------------------------------------------
 ULONG
-CTableDescriptor::PartitionCount()
-	const
+CTableDescriptor::PartitionCount() const
 {
 	GPOS_ASSERT(NULL != m_mdid);
 
@@ -375,4 +339,3 @@ CTableDescriptor::FDescriptorWithPartialIndexes()
 }
 
 // EOF
-

@@ -33,18 +33,13 @@ using namespace gpmd;
 //		Ctor
 //
 //---------------------------------------------------------------------------
-CScalarSubqueryQuantified::CScalarSubqueryQuantified
-	(
-	CMemoryPool *mp,
-	IMDId *scalar_op_mdid,
-	const CWStringConst *pstrScalarOp,
-	const CColRef *colref
-	)
-	:
-	CScalar(mp),
-	m_scalar_op_mdid(scalar_op_mdid),
-	m_pstrScalarOp(pstrScalarOp),
-	m_pcr(colref)
+CScalarSubqueryQuantified::CScalarSubqueryQuantified(
+	CMemoryPool *mp, IMDId *scalar_op_mdid, const CWStringConst *pstrScalarOp,
+	const CColRef *colref)
+	: CScalar(mp),
+	  m_scalar_op_mdid(scalar_op_mdid),
+	  m_pstrScalarOp(pstrScalarOp),
+	  m_pcr(colref)
 {
 	GPOS_ASSERT(scalar_op_mdid->IsValid());
 	GPOS_ASSERT(NULL != pstrScalarOp);
@@ -105,9 +100,11 @@ IMDId *
 CScalarSubqueryQuantified::MdidType() const
 {
 	CMDAccessor *md_accessor = COptCtxt::PoctxtFromTLS()->Pmda();
-	IMDId *mdid_type = md_accessor->RetrieveScOp(m_scalar_op_mdid)->GetResultTypeMdid();
+	IMDId *mdid_type =
+		md_accessor->RetrieveScOp(m_scalar_op_mdid)->GetResultTypeMdid();
 
-	GPOS_ASSERT(md_accessor->PtMDType<IMDTypeBool>()->MDId()->Equals(mdid_type));
+	GPOS_ASSERT(
+		md_accessor->PtMDType<IMDTypeBool>()->MDId()->Equals(mdid_type));
 
 	return mdid_type;
 }
@@ -123,15 +120,10 @@ CScalarSubqueryQuantified::MdidType() const
 ULONG
 CScalarSubqueryQuantified::HashValue() const
 {
-	return gpos::CombineHashes
-				(
-				COperator::HashValue(),
-				gpos::CombineHashes
-						(
-						m_scalar_op_mdid->HashValue(),
-						gpos::HashPtr<CColRef>(m_pcr)
-						)
-				);
+	return gpos::CombineHashes(
+		COperator::HashValue(),
+		gpos::CombineHashes(m_scalar_op_mdid->HashValue(),
+							gpos::HashPtr<CColRef>(m_pcr)));
 }
 
 
@@ -144,11 +136,7 @@ CScalarSubqueryQuantified::HashValue() const
 //
 //---------------------------------------------------------------------------
 BOOL
-CScalarSubqueryQuantified::Matches
-	(
-	COperator *pop
-	)
-	const
+CScalarSubqueryQuantified::Matches(COperator *pop) const
 {
 	if (pop->Eopid() != Eopid())
 	{
@@ -156,7 +144,8 @@ CScalarSubqueryQuantified::Matches
 	}
 
 	// match if contents are identical
-	CScalarSubqueryQuantified *popSsq = CScalarSubqueryQuantified::PopConvert(pop);
+	CScalarSubqueryQuantified *popSsq =
+		CScalarSubqueryQuantified::PopConvert(pop);
 	return popSsq->Pcr() == m_pcr && popSsq->MdIdOp()->Equals(m_scalar_op_mdid);
 }
 
@@ -170,20 +159,17 @@ CScalarSubqueryQuantified::Matches
 //
 //---------------------------------------------------------------------------
 CColRefSet *
-CScalarSubqueryQuantified::PcrsUsed
-	(
-	CMemoryPool *mp,
-	 CExpressionHandle &exprhdl
-	)
+CScalarSubqueryQuantified::PcrsUsed(CMemoryPool *mp, CExpressionHandle &exprhdl)
 {
 	// used columns is an empty set unless subquery column is an outer reference
 	CColRefSet *pcrs = GPOS_NEW(mp) CColRefSet(mp);
 
-	CColRefSet *pcrsChildOutput = exprhdl.DeriveOutputColumns(0 /* child_index */);
+	CColRefSet *pcrsChildOutput =
+		exprhdl.DeriveOutputColumns(0 /* child_index */);
 	if (!pcrsChildOutput->FMember(m_pcr))
 	{
 		// subquery column is not produced by relational child, add it to used columns
-		 pcrs->Include(m_pcr);
+		pcrs->Include(m_pcr);
 	}
 
 	return pcrs;
@@ -199,12 +185,8 @@ CScalarSubqueryQuantified::PcrsUsed
 //
 //---------------------------------------------------------------------------
 CPartInfo *
-CScalarSubqueryQuantified::PpartinfoDerive
-	(
-	CMemoryPool *, // mp, 
-	CExpressionHandle &exprhdl
-	)
-	const
+CScalarSubqueryQuantified::PpartinfoDerive(CMemoryPool *,  // mp,
+										   CExpressionHandle &exprhdl) const
 {
 	CPartInfo *ppartinfoChild = exprhdl.DerivePartitionInfo(0);
 	GPOS_ASSERT(NULL != ppartinfoChild);
@@ -222,11 +204,7 @@ CScalarSubqueryQuantified::PpartinfoDerive
 //
 //---------------------------------------------------------------------------
 IOstream &
-CScalarSubqueryQuantified::OsPrint
-	(
-	IOstream &os
-	)
-	const
+CScalarSubqueryQuantified::OsPrint(IOstream &os) const
 {
 	os << SzId();
 	os << "(" << PstrOp()->GetBuffer() << ")";
@@ -239,4 +217,3 @@ CScalarSubqueryQuantified::OsPrint
 
 
 // EOF
-

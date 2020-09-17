@@ -32,34 +32,15 @@ using namespace gpopt;
 //		Ctor
 //
 //---------------------------------------------------------------------------
-CPhysicalStreamAgg::CPhysicalStreamAgg
-	(
-	CMemoryPool *mp,
-	CColRefArray *colref_array,
-	CColRefArray *pdrgpcrMinimal,
-	COperator::EGbAggType egbaggtype,
-	BOOL fGeneratesDuplicates,
-	CColRefArray *pdrgpcrArgDQA,
-	BOOL fMultiStage,
-	BOOL isAggFromSplitDQA,
-	CLogicalGbAgg::EAggStage aggStage,
-  BOOL should_enforce_distribution
-	)
-	:
-	CPhysicalAgg
-	(
-	mp,
-	colref_array,
-	pdrgpcrMinimal,
-	egbaggtype,
-	fGeneratesDuplicates,
-	pdrgpcrArgDQA,
-	fMultiStage,
-	isAggFromSplitDQA,
-	aggStage,
-	should_enforce_distribution
-	),
-	m_pos(NULL)
+CPhysicalStreamAgg::CPhysicalStreamAgg(
+	CMemoryPool *mp, CColRefArray *colref_array, CColRefArray *pdrgpcrMinimal,
+	COperator::EGbAggType egbaggtype, BOOL fGeneratesDuplicates,
+	CColRefArray *pdrgpcrArgDQA, BOOL fMultiStage, BOOL isAggFromSplitDQA,
+	CLogicalGbAgg::EAggStage aggStage, BOOL should_enforce_distribution)
+	: CPhysicalAgg(mp, colref_array, pdrgpcrMinimal, egbaggtype,
+				   fGeneratesDuplicates, pdrgpcrArgDQA, fMultiStage,
+				   isAggFromSplitDQA, aggStage, should_enforce_distribution),
+	  m_pos(NULL)
 {
 	GPOS_ASSERT(NULL != m_pdrgpcrMinimal);
 	m_pcrsMinimalGrpCols = GPOS_NEW(mp) CColRefSet(mp, m_pdrgpcrMinimal);
@@ -75,11 +56,7 @@ CPhysicalStreamAgg::CPhysicalStreamAgg
 //
 //---------------------------------------------------------------------------
 void
-CPhysicalStreamAgg::InitOrderSpec
-	(
-	CMemoryPool *mp,
-	CColRefArray *pdrgpcrOrder
-	)
+CPhysicalStreamAgg::InitOrderSpec(CMemoryPool *mp, CColRefArray *pdrgpcrOrder)
 {
 	GPOS_ASSERT(NULL != pdrgpcrOrder);
 
@@ -92,7 +69,8 @@ CPhysicalStreamAgg::InitOrderSpec
 
 		// TODO: 12/21/2011 - ; this seems broken: a colref must not embed
 		// a pointer to a cached object
-		gpmd::IMDId *mdid = colref->RetrieveType()->GetMdidForCmpType(IMDType::EcmptL);
+		gpmd::IMDId *mdid =
+			colref->RetrieveType()->GetMdidForCmpType(IMDType::EcmptL);
 		mdid->AddRef();
 
 		m_pos->Append(mdid, colref, COrderSpec::EntLast);
@@ -126,13 +104,8 @@ CPhysicalStreamAgg::~CPhysicalStreamAgg()
 //
 //---------------------------------------------------------------------------
 COrderSpec *
-CPhysicalStreamAgg::PosCovering
-	(
-	CMemoryPool *mp,
-	COrderSpec *posRequired,
-	CColRefArray *pdrgpcrGrp
-	)
-	const
+CPhysicalStreamAgg::PosCovering(CMemoryPool *mp, COrderSpec *posRequired,
+								CColRefArray *pdrgpcrGrp) const
 {
 	GPOS_ASSERT(NULL != posRequired);
 
@@ -172,7 +145,8 @@ CPhysicalStreamAgg::PosCovering
 			CColRef *colref = (*pdrgpcrGrp)[ul];
 			if (!pcrsReqd->FMember(colref))
 			{
-				IMDId *mdid = colref->RetrieveType()->GetMdidForCmpType(IMDType::EcmptL);
+				IMDId *mdid =
+					colref->RetrieveType()->GetMdidForCmpType(IMDType::EcmptL);
 				mdid->AddRef();
 				pos->Append(mdid, colref, COrderSpec::EntLast);
 			}
@@ -193,19 +167,15 @@ CPhysicalStreamAgg::PosCovering
 //
 //---------------------------------------------------------------------------
 COrderSpec *
-CPhysicalStreamAgg::PosRequiredStreamAgg
-	(
-	CMemoryPool *mp,
-	CExpressionHandle &exprhdl,
-	COrderSpec *posRequired,
-	ULONG
+CPhysicalStreamAgg::PosRequiredStreamAgg(CMemoryPool *mp,
+										 CExpressionHandle &exprhdl,
+										 COrderSpec *posRequired,
+										 ULONG
 #ifdef GPOS_DEBUG
-	child_index
-#endif // GPOS_DEBUG
-	,
-	CColRefArray *pdrgpcrGrp
-	)
-	const
+											 child_index
+#endif	// GPOS_DEBUG
+										 ,
+										 CColRefArray *pdrgpcrGrp) const
 {
 	GPOS_ASSERT(0 == child_index);
 
@@ -228,7 +198,7 @@ CPhysicalStreamAgg::PosRequiredStreamAgg
 		CColRefSet *pcrsReqd = posRequired->PcrsUsed(m_mp);
 		BOOL fUsesDefinedCols = FUnaryUsesDefinedColumns(pcrsReqd, exprhdl);
 		pcrsReqd->Release();
-		
+
 		if (!fUsesDefinedCols)
 		{
 			// we are grouping on child's key,
@@ -253,12 +223,8 @@ CPhysicalStreamAgg::PosRequiredStreamAgg
 //
 //---------------------------------------------------------------------------
 COrderSpec *
-CPhysicalStreamAgg::PosDerive
-	(
-	CMemoryPool *, // mp
-	CExpressionHandle &exprhdl
-	)
-	const
+CPhysicalStreamAgg::PosDerive(CMemoryPool *,  // mp
+							  CExpressionHandle &exprhdl) const
 {
 	return PosDerivePassThruOuter(exprhdl);
 }
@@ -273,16 +239,12 @@ CPhysicalStreamAgg::PosDerive
 //
 //---------------------------------------------------------------------------
 CEnfdProp::EPropEnforcingType
-CPhysicalStreamAgg::EpetOrder
-	(
-	CExpressionHandle &exprhdl,
-	const CEnfdOrder *peo
-	)
-	const
+CPhysicalStreamAgg::EpetOrder(CExpressionHandle &exprhdl,
+							  const CEnfdOrder *peo) const
 {
 	GPOS_ASSERT(NULL != peo);
 	GPOS_ASSERT(!peo->PosRequired()->IsEmpty());
-	
+
 	// get the order delivered by the stream agg node
 	COrderSpec *pos = CDrvdPropPlan::Pdpplan(exprhdl.Pdp())->Pos();
 	if (peo->FCompatible(pos))
@@ -290,10 +252,9 @@ CPhysicalStreamAgg::EpetOrder
 		// required order will be established by the stream agg operator
 		return CEnfdProp::EpetUnnecessary;
 	}
-	
+
 	// required order will be enforced on limit's output
 	return CEnfdProp::EpetRequired;
 }
 
 // EOF
-

@@ -28,15 +28,12 @@ using namespace gpopt;
 //
 //---------------------------------------------------------------------------
 CXform::EXformPromise
-CXformLeftAntiSemiApply2LeftAntiSemiJoin::Exfp
-	(
-	CExpressionHandle &exprhdl
-	)
-	const
+CXformLeftAntiSemiApply2LeftAntiSemiJoin::Exfp(CExpressionHandle &exprhdl) const
 {
 	// if there are outer refs that include columns from the immediate outer child, the
 	// transformation is applicable
-	if (exprhdl.HasOuterRefs(1 /*child_index*/) && !CUtils::FInnerUsesExternalColsOnly(exprhdl))
+	if (exprhdl.HasOuterRefs(1 /*child_index*/) &&
+		!CUtils::FInnerUsesExternalColsOnly(exprhdl))
 	{
 		return CXform::ExfpHigh;
 	}
@@ -54,13 +51,9 @@ CXformLeftAntiSemiApply2LeftAntiSemiJoin::Exfp
 //
 //---------------------------------------------------------------------------
 void
-CXformLeftAntiSemiApply2LeftAntiSemiJoin::Transform
-	(
-	CXformContext *pxfctxt,
-	CXformResult *pxfres,
-	CExpression *pexpr
-	)
-	const
+CXformLeftAntiSemiApply2LeftAntiSemiJoin::Transform(CXformContext *pxfctxt,
+													CXformResult *pxfres,
+													CExpression *pexpr) const
 {
 	GPOS_ASSERT(NULL != pxfctxt);
 	GPOS_ASSERT(FPromising(pxfctxt->Pmp(), this, pexpr));
@@ -71,4 +64,3 @@ CXformLeftAntiSemiApply2LeftAntiSemiJoin::Transform
 
 
 // EOF
-

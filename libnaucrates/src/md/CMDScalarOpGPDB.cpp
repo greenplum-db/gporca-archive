@@ -28,39 +28,29 @@ using namespace gpmd;
 //		Constructs a metadata scalar op
 //
 //---------------------------------------------------------------------------
-CMDScalarOpGPDB::CMDScalarOpGPDB
-	(
-	CMemoryPool *mp,
-	IMDId *mdid,
-	CMDName *mdname,
-	IMDId *mdid_type_left,
-	IMDId *mdid_type_right,
-	IMDId *result_type_mdid,
-	IMDId *mdid_func,
-	IMDId *mdid_commute_opr,
-	IMDId *m_mdid_inverse_opr,
-	IMDType::ECmpType cmp_type,
-	BOOL returns_null_on_null_input,
-	BOOL is_ndv_preserving,
-	IMdIdArray *mdid_opfamilies_array
-	)
-	:
-	m_mp(mp),
-	m_mdid(mdid),
-	m_mdname(mdname),
-	m_mdid_type_left(mdid_type_left),
-	m_mdid_type_right(mdid_type_right),
-	m_mdid_type_result(result_type_mdid),
-	m_func_mdid(mdid_func),
-	m_mdid_commute_opr(mdid_commute_opr),
-	m_mdid_inverse_opr(m_mdid_inverse_opr),
-	m_comparision_type(cmp_type),
-	m_returns_null_on_null_input(returns_null_on_null_input),
-	m_is_ndv_preserving(is_ndv_preserving),
-	m_mdid_opfamilies_array(mdid_opfamilies_array)
+CMDScalarOpGPDB::CMDScalarOpGPDB(
+	CMemoryPool *mp, IMDId *mdid, CMDName *mdname, IMDId *mdid_type_left,
+	IMDId *mdid_type_right, IMDId *result_type_mdid, IMDId *mdid_func,
+	IMDId *mdid_commute_opr, IMDId *m_mdid_inverse_opr,
+	IMDType::ECmpType cmp_type, BOOL returns_null_on_null_input,
+	BOOL is_ndv_preserving, IMdIdArray *mdid_opfamilies_array)
+	: m_mp(mp),
+	  m_mdid(mdid),
+	  m_mdname(mdname),
+	  m_mdid_type_left(mdid_type_left),
+	  m_mdid_type_right(mdid_type_right),
+	  m_mdid_type_result(result_type_mdid),
+	  m_func_mdid(mdid_func),
+	  m_mdid_commute_opr(mdid_commute_opr),
+	  m_mdid_inverse_opr(m_mdid_inverse_opr),
+	  m_comparision_type(cmp_type),
+	  m_returns_null_on_null_input(returns_null_on_null_input),
+	  m_is_ndv_preserving(is_ndv_preserving),
+	  m_mdid_opfamilies_array(mdid_opfamilies_array)
 {
 	GPOS_ASSERT(NULL != mdid_opfamilies_array);
-	m_dxl_str = CDXLUtils::SerializeMDObj(m_mp, this, false /*fSerializeHeader*/, false /*indentation*/);
+	m_dxl_str = CDXLUtils::SerializeMDObj(
+		m_mp, this, false /*fSerializeHeader*/, false /*indentation*/);
 }
 
 
@@ -76,13 +66,13 @@ CMDScalarOpGPDB::~CMDScalarOpGPDB()
 {
 	m_mdid->Release();
 	m_mdid_type_result->Release();
-	m_func_mdid->Release();	
+	m_func_mdid->Release();
 
 	CRefCount::SafeRelease(m_mdid_type_left);
 	CRefCount::SafeRelease(m_mdid_type_right);
 	CRefCount::SafeRelease(m_mdid_commute_opr);
 	CRefCount::SafeRelease(m_mdid_inverse_opr);
-	
+
 	GPOS_DELETE(m_mdname);
 	GPOS_DELETE(m_dxl_str);
 	m_mdid_opfamilies_array->Release();
@@ -261,47 +251,55 @@ CMDScalarOpGPDB::ParseCmpType() const
 //
 //---------------------------------------------------------------------------
 void
-CMDScalarOpGPDB::Serialize
-	(
-	CXMLSerializer *xml_serializer
-	) 
-	const
+CMDScalarOpGPDB::Serialize(CXMLSerializer *xml_serializer) const
 {
-	xml_serializer->OpenElement(CDXLTokens::GetDXLTokenStr(EdxltokenNamespacePrefix), 
-						CDXLTokens::GetDXLTokenStr(EdxltokenGPDBScalarOp));
-	
-	m_mdid->Serialize(xml_serializer, CDXLTokens::GetDXLTokenStr(EdxltokenMdid));
-	xml_serializer->AddAttribute(CDXLTokens::GetDXLTokenStr(EdxltokenName), m_mdname->GetMDName());
-	xml_serializer->AddAttribute(CDXLTokens::GetDXLTokenStr(EdxltokenGPDBScalarOpCmpType), IMDType::GetCmpTypeStr(m_comparision_type));
-	xml_serializer->AddAttribute(CDXLTokens::GetDXLTokenStr(EdxltokenReturnsNullOnNullInput), m_returns_null_on_null_input);
-	xml_serializer->AddAttribute(CDXLTokens::GetDXLTokenStr(EdxltokenIsNDVPreserving), m_is_ndv_preserving);
+	xml_serializer->OpenElement(
+		CDXLTokens::GetDXLTokenStr(EdxltokenNamespacePrefix),
+		CDXLTokens::GetDXLTokenStr(EdxltokenGPDBScalarOp));
+
+	m_mdid->Serialize(xml_serializer,
+					  CDXLTokens::GetDXLTokenStr(EdxltokenMdid));
+	xml_serializer->AddAttribute(CDXLTokens::GetDXLTokenStr(EdxltokenName),
+								 m_mdname->GetMDName());
+	xml_serializer->AddAttribute(
+		CDXLTokens::GetDXLTokenStr(EdxltokenGPDBScalarOpCmpType),
+		IMDType::GetCmpTypeStr(m_comparision_type));
+	xml_serializer->AddAttribute(
+		CDXLTokens::GetDXLTokenStr(EdxltokenReturnsNullOnNullInput),
+		m_returns_null_on_null_input);
+	xml_serializer->AddAttribute(
+		CDXLTokens::GetDXLTokenStr(EdxltokenIsNDVPreserving),
+		m_is_ndv_preserving);
 
 	Edxltoken dxl_token_array[6] = {
-							EdxltokenGPDBScalarOpLeftTypeId, EdxltokenGPDBScalarOpRightTypeId, 
-							EdxltokenGPDBScalarOpResultTypeId, EdxltokenGPDBScalarOpFuncId, 
-							EdxltokenGPDBScalarOpCommOpId, EdxltokenGPDBScalarOpInverseOpId
-							};
-	
-	IMDId *mdid_array[6] = {m_mdid_type_left, m_mdid_type_right, m_mdid_type_result,
-						m_func_mdid, m_mdid_commute_opr, m_mdid_inverse_opr};
-	
+		EdxltokenGPDBScalarOpLeftTypeId,   EdxltokenGPDBScalarOpRightTypeId,
+		EdxltokenGPDBScalarOpResultTypeId, EdxltokenGPDBScalarOpFuncId,
+		EdxltokenGPDBScalarOpCommOpId,	   EdxltokenGPDBScalarOpInverseOpId};
+
+	IMDId *mdid_array[6] = {m_mdid_type_left,	m_mdid_type_right,
+							m_mdid_type_result, m_func_mdid,
+							m_mdid_commute_opr, m_mdid_inverse_opr};
+
 	for (ULONG ul = 0; ul < GPOS_ARRAY_SIZE(dxl_token_array); ul++)
 	{
-		SerializeMDIdAsElem(xml_serializer, CDXLTokens::GetDXLTokenStr(dxl_token_array[ul]), mdid_array[ul]);
+		SerializeMDIdAsElem(xml_serializer,
+							CDXLTokens::GetDXLTokenStr(dxl_token_array[ul]),
+							mdid_array[ul]);
 
 		GPOS_CHECK_ABORT;
-	}	
-	
+	}
+
 	// serialize opfamilies information
 	if (0 < m_mdid_opfamilies_array->Size())
 	{
-		SerializeMDIdList(xml_serializer, m_mdid_opfamilies_array, 
-						CDXLTokens::GetDXLTokenStr(EdxltokenOpfamilies), 
-						CDXLTokens::GetDXLTokenStr(EdxltokenOpfamily));
+		SerializeMDIdList(xml_serializer, m_mdid_opfamilies_array,
+						  CDXLTokens::GetDXLTokenStr(EdxltokenOpfamilies),
+						  CDXLTokens::GetDXLTokenStr(EdxltokenOpfamily));
 	}
-	
-	xml_serializer->CloseElement(CDXLTokens::GetDXLTokenStr(EdxltokenNamespacePrefix), 
-						CDXLTokens::GetDXLTokenStr(EdxltokenGPDBScalarOp));
+
+	xml_serializer->CloseElement(
+		CDXLTokens::GetDXLTokenStr(EdxltokenNamespacePrefix),
+		CDXLTokens::GetDXLTokenStr(EdxltokenGPDBScalarOp));
 }
 
 //---------------------------------------------------------------------------
@@ -327,14 +325,10 @@ CMDScalarOpGPDB::OpfamiliesCount() const
 //
 //---------------------------------------------------------------------------
 IMDId *
-CMDScalarOpGPDB::OpfamilyMdidAt
-	(
-	ULONG pos
-	) 
-	const
+CMDScalarOpGPDB::OpfamilyMdidAt(ULONG pos) const
 {
 	GPOS_ASSERT(pos < m_mdid_opfamilies_array->Size());
-	
+
 	return (*m_mdid_opfamilies_array)[pos];
 }
 
@@ -349,22 +343,18 @@ CMDScalarOpGPDB::OpfamilyMdidAt
 //
 //---------------------------------------------------------------------------
 void
-CMDScalarOpGPDB::DebugPrint
-	(
-	IOstream &os
-	)
-	const
+CMDScalarOpGPDB::DebugPrint(IOstream &os) const
 {
 	os << "Operator id: ";
 	MDId()->OsPrint(os);
 	os << std::endl;
-	
+
 	os << "Operator name: " << (Mdname()).GetMDName()->GetBuffer() << std::endl;
-	
+
 	os << "Left operand type id: ";
 	GetLeftMdid()->OsPrint(os);
 	os << std::endl;
-		
+
 	os << "Right operand type id: ";
 	GetRightMdid()->OsPrint(os);
 	os << std::endl;
@@ -385,10 +375,10 @@ CMDScalarOpGPDB::DebugPrint
 	GetInverseOpMdid()->OsPrint(os);
 	os << std::endl;
 
-	os << std::endl;	
+	os << std::endl;
 }
 
-#endif // GPOS_DEBUG
+#endif	// GPOS_DEBUG
 
 
 // EOF

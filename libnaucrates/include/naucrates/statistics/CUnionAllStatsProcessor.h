@@ -18,25 +18,16 @@
 
 namespace gpnaucrates
 {
+class CUnionAllStatsProcessor
+{
+public:
+	static CStatistics *CreateStatsForUnionAll(
+		CMemoryPool *mp, const CStatistics *stats_first_child,
+		const CStatistics *stats_second_child, ULongPtrArray *output_colids,
+		ULongPtrArray *first_child_colids, ULongPtrArray *second_child_colids);
+};
+}  // namespace gpnaucrates
 
-	class CUnionAllStatsProcessor
-	{
-		public:
-
-		static
-		CStatistics *CreateStatsForUnionAll
-						(
-						CMemoryPool *mp,
-						const CStatistics *stats_first_child,
-						const CStatistics *stats_second_child,
-						ULongPtrArray *output_colids,
-						ULongPtrArray *first_child_colids,
-						ULongPtrArray *second_child_colids
-						);
-	};
-}
-
-#endif // !GPNAUCRATES_CUnionAllStatsProcessor_H
+#endif	// !GPNAUCRATES_CUnionAllStatsProcessor_H
 
 // EOF
-

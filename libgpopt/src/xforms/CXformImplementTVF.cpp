@@ -25,22 +25,14 @@ using namespace gpopt;
 //		Ctor
 //
 //---------------------------------------------------------------------------
-CXformImplementTVF::CXformImplementTVF
-	(
-	CMemoryPool *mp
-	)
-	:
-	CXformImplementation
-		(
-		 // pattern
-		GPOS_NEW(mp) CExpression
-				(
-				mp,
-				GPOS_NEW(mp) CLogicalTVF(mp),
-				GPOS_NEW(mp) CExpression(mp, GPOS_NEW(mp) CPatternMultiLeaf(mp))
-				)
-		)
-{}
+CXformImplementTVF::CXformImplementTVF(CMemoryPool *mp)
+	: CXformImplementation(
+		  // pattern
+		  GPOS_NEW(mp) CExpression(
+			  mp, GPOS_NEW(mp) CLogicalTVF(mp),
+			  GPOS_NEW(mp) CExpression(mp, GPOS_NEW(mp) CPatternMultiLeaf(mp))))
+{
+}
 
 //---------------------------------------------------------------------------
 //	@function:
@@ -50,13 +42,10 @@ CXformImplementTVF::CXformImplementTVF
 //		Ctor
 //
 //---------------------------------------------------------------------------
-CXformImplementTVF::CXformImplementTVF
-	(
-	CExpression *pexpr
-	)
-	:
-	CXformImplementation(pexpr)
-{}
+CXformImplementTVF::CXformImplementTVF(CExpression *pexpr)
+	: CXformImplementation(pexpr)
+{
+}
 
 
 //---------------------------------------------------------------------------
@@ -68,11 +57,7 @@ CXformImplementTVF::CXformImplementTVF
 //
 //---------------------------------------------------------------------------
 CXform::EXformPromise
-CXformImplementTVF::Exfp
-	(
-	CExpressionHandle &exprhdl
-	)
-	const
+CXformImplementTVF::Exfp(CExpressionHandle &exprhdl) const
 {
 	const ULONG arity = exprhdl.Arity();
 	for (ULONG ul = 0; ul < arity; ul++)
@@ -97,13 +82,8 @@ CXformImplementTVF::Exfp
 //
 //---------------------------------------------------------------------------
 void
-CXformImplementTVF::Transform
-	(
-	CXformContext *pxfctxt,
-	CXformResult *pxfres,
-	CExpression *pexpr
-	)
-	const
+CXformImplementTVF::Transform(CXformContext *pxfctxt, CXformResult *pxfres,
+							  CExpression *pexpr) const
 {
 	GPOS_ASSERT(NULL != pxfctxt);
 	GPOS_ASSERT(FPromising(pxfctxt->Pmp(), this, pexpr));
@@ -119,7 +99,8 @@ CXformImplementTVF::Transform
 	IMDId *mdid_return_type = popTVF->ReturnTypeMdId();
 	mdid_return_type->AddRef();
 
-	CWStringConst *str = GPOS_NEW(mp) CWStringConst(popTVF->Pstr()->GetBuffer());
+	CWStringConst *str =
+		GPOS_NEW(mp) CWStringConst(popTVF->Pstr()->GetBuffer());
 
 	CColumnDescriptorArray *pdrgpcoldesc = popTVF->Pdrgpcoldesc();
 	pdrgpcoldesc->AddRef();
@@ -130,11 +111,12 @@ CXformImplementTVF::Transform
 
 	CExpressionArray *pdrgpexpr = pexpr->PdrgPexpr();
 
-	CPhysicalTVF *pphTVF = GPOS_NEW(mp) CPhysicalTVF(mp, mdid_func, mdid_return_type, str, pdrgpcoldesc, pcrs);
+	CPhysicalTVF *pphTVF = GPOS_NEW(mp)
+		CPhysicalTVF(mp, mdid_func, mdid_return_type, str, pdrgpcoldesc, pcrs);
 
 	CExpression *pexprAlt = NULL;
 	// create alternative expression
-	if(NULL == pdrgpexpr || 0 == pdrgpexpr->Size())
+	if (NULL == pdrgpexpr || 0 == pdrgpexpr->Size())
 	{
 		pexprAlt = GPOS_NEW(mp) CExpression(mp, pphTVF);
 	}
@@ -150,4 +132,3 @@ CXformImplementTVF::Transform
 
 
 // EOF
-

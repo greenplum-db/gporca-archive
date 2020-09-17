@@ -23,11 +23,10 @@
 
 using namespace gpopt;
 
-ULONG CAggTest::m_ulAggTestCounter = 0;  // start from first test
+ULONG CAggTest::m_ulAggTestCounter = 0;	 // start from first test
 
 // minidump files
-const CHAR *rgszAggFileNames[] =
-{
+const CHAR *rgszAggFileNames[] = {
 	"../data/dxl/minidump/AggWithVolatileFunc.mdp",
 	"../data/dxl/minidump/VolatileFunctionsBelowScalarAgg.mdp",
 	"../data/dxl/minidump/EagerAggMax.mdp",
@@ -108,11 +107,9 @@ const CHAR *rgszAggFileNames[] =
 GPOS_RESULT
 CAggTest::EresUnittest()
 {
-
-	CUnittest rgut[] =
-		{
+	CUnittest rgut[] = {
 		GPOS_UNITTEST_FUNC(EresUnittest_RunTests),
-		};
+	};
 
 	GPOS_RESULT eres = CUnittest::EresExecute(rgut, GPOS_ARRAY_SIZE(rgut));
 
@@ -133,12 +130,9 @@ CAggTest::EresUnittest()
 GPOS_RESULT
 CAggTest::EresUnittest_RunTests()
 {
-	return CTestUtils::EresUnittest_RunTests
-						(
-						rgszAggFileNames,
-						&m_ulAggTestCounter,
-						GPOS_ARRAY_SIZE(rgszAggFileNames)
-						);
+	return CTestUtils::EresUnittest_RunTests(rgszAggFileNames,
+											 &m_ulAggTestCounter,
+											 GPOS_ARRAY_SIZE(rgszAggFileNames));
 }
 
 // EOF

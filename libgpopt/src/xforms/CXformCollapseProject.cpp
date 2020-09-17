@@ -25,29 +25,23 @@ using namespace gpopt;
 //		Ctor
 //
 //---------------------------------------------------------------------------
-CXformCollapseProject::CXformCollapseProject
-	(
-	CMemoryPool *mp
-	)
-	:
-	CXformExploration
-		(
-		 // pattern
-		GPOS_NEW(mp) CExpression
-					(
-					mp,
-					GPOS_NEW(mp) CLogicalProject(mp),
-					GPOS_NEW(mp) CExpression
-						(
-						mp,
-						GPOS_NEW(mp) CLogicalProject(mp),
-						GPOS_NEW(mp) CExpression(mp, GPOS_NEW(mp) CPatternLeaf(mp)),  // relational child
-						GPOS_NEW(mp) CExpression(mp, GPOS_NEW(mp) CPatternTree(mp))  // scalar project list
-						),
-					GPOS_NEW(mp) CExpression(mp, GPOS_NEW(mp) CPatternTree(mp))  // scalar project list
-					)
-		)
-{}
+CXformCollapseProject::CXformCollapseProject(CMemoryPool *mp)
+	: CXformExploration(
+		  // pattern
+		  GPOS_NEW(mp) CExpression(
+			  mp, GPOS_NEW(mp) CLogicalProject(mp),
+			  GPOS_NEW(mp) CExpression(
+				  mp, GPOS_NEW(mp) CLogicalProject(mp),
+				  GPOS_NEW(mp) CExpression(
+					  mp, GPOS_NEW(mp) CPatternLeaf(mp)),  // relational child
+				  GPOS_NEW(mp) CExpression(
+					  mp, GPOS_NEW(mp) CPatternTree(mp))  // scalar project list
+				  ),
+			  GPOS_NEW(mp) CExpression(
+				  mp, GPOS_NEW(mp) CPatternTree(mp))  // scalar project list
+			  ))
+{
+}
 
 
 
@@ -60,11 +54,8 @@ CXformCollapseProject::CXformCollapseProject
 //
 //---------------------------------------------------------------------------
 CXform::EXformPromise
-CXformCollapseProject::Exfp
-	(
-	CExpressionHandle &//exprhdl
-	)
-	const
+CXformCollapseProject::Exfp(CExpressionHandle &	 //exprhdl
+) const
 {
 	return CXform::ExfpHigh;
 }
@@ -79,13 +70,8 @@ CXformCollapseProject::Exfp
 //
 //---------------------------------------------------------------------------
 void
-CXformCollapseProject::Transform
-	(
-	CXformContext *pxfctxt,
-	CXformResult *pxfres,
-	CExpression *pexpr
-	)
-	const
+CXformCollapseProject::Transform(CXformContext *pxfctxt, CXformResult *pxfres,
+								 CExpression *pexpr) const
 {
 	GPOS_ASSERT(NULL != pxfctxt);
 	GPOS_ASSERT(NULL != pxfres);

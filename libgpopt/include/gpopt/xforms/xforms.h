@@ -179,6 +179,6 @@
 #include "gpopt/xforms/CXformMaxOneRow2Assert.h"
 #include "gpopt/xforms/CXformRemoveSubqDistinct.h"
 
-#endif // !GPOPT_xforms_H
+#endif	// !GPOPT_xforms_H
 
 // EOF

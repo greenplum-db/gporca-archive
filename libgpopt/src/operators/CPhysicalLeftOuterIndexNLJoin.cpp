@@ -18,14 +18,9 @@
 
 using namespace gpopt;
 
-CPhysicalLeftOuterIndexNLJoin::CPhysicalLeftOuterIndexNLJoin
-	(
-	CMemoryPool *mp,
-	CColRefArray *colref_array
-	)
-	:
-	CPhysicalLeftOuterNLJoin(mp),
-	m_pdrgpcrOuterRefs(colref_array)
+CPhysicalLeftOuterIndexNLJoin::CPhysicalLeftOuterIndexNLJoin(
+	CMemoryPool *mp, CColRefArray *colref_array)
+	: CPhysicalLeftOuterNLJoin(mp), m_pdrgpcrOuterRefs(colref_array)
 {
 	GPOS_ASSERT(NULL != colref_array);
 }
@@ -38,15 +33,12 @@ CPhysicalLeftOuterIndexNLJoin::~CPhysicalLeftOuterIndexNLJoin()
 
 
 BOOL
-CPhysicalLeftOuterIndexNLJoin::Matches
-	(
-	COperator *pop
-	)
-	const
+CPhysicalLeftOuterIndexNLJoin::Matches(COperator *pop) const
 {
 	if (pop->Eopid() == Eopid())
 	{
-		return m_pdrgpcrOuterRefs->Equals(CPhysicalLeftOuterIndexNLJoin::PopConvert(pop)->PdrgPcrOuterRefs());
+		return m_pdrgpcrOuterRefs->Equals(
+			CPhysicalLeftOuterIndexNLJoin::PopConvert(pop)->PdrgPcrOuterRefs());
 	}
 
 	return false;
@@ -54,16 +46,13 @@ CPhysicalLeftOuterIndexNLJoin::Matches
 
 
 CDistributionSpec *
-CPhysicalLeftOuterIndexNLJoin::PdsRequired
-	(
-	CMemoryPool *mp,
-	CExpressionHandle &exprhdl,
-	CDistributionSpec *,//pdsRequired,
-	ULONG child_index,
-	CDrvdPropArray *pdrgpdpCtxt,
-	ULONG // ulOptReq
-	)
-	const
+CPhysicalLeftOuterIndexNLJoin::PdsRequired(CMemoryPool *mp,
+										   CExpressionHandle &exprhdl,
+										   CDistributionSpec *,	 //pdsRequired,
+										   ULONG child_index,
+										   CDrvdPropArray *pdrgpdpCtxt,
+										   ULONG  // ulOptReq
+) const
 {
 	GPOS_ASSERT(2 > child_index);
 
@@ -72,11 +61,13 @@ CPhysicalLeftOuterIndexNLJoin::PdsRequired
 		// inner (index-scan side) is requested for Any distribution,
 		// we allow outer references on the inner child of the join since it needs
 		// to refer to columns in join's outer child
-		return GPOS_NEW(mp) CDistributionSpecAny(this->Eopid(), true /*fAllowOuterRefs*/);
+		return GPOS_NEW(mp)
+			CDistributionSpecAny(this->Eopid(), true /*fAllowOuterRefs*/);
 	}
 
 	// we need to match distribution of inner
-	CDistributionSpec *pdsInner = CDrvdPropPlan::Pdpplan((*pdrgpdpCtxt)[0])->Pds();
+	CDistributionSpec *pdsInner =
+		CDrvdPropPlan::Pdpplan((*pdrgpdpCtxt)[0])->Pds();
 	CDistributionSpec::EDistributionType edtInner = pdsInner->Edt();
 	if (CDistributionSpec::EdtSingleton == edtInner ||
 		CDistributionSpec::EdtStrictSingleton == edtInner ||
@@ -89,7 +80,8 @@ CPhysicalLeftOuterIndexNLJoin::PdsRequired
 	if (CDistributionSpec::EdtHashed == edtInner)
 	{
 		// check if we could create an equivalent hashed distribution request to the inner child
-		CDistributionSpecHashed *pdshashed = CDistributionSpecHashed::PdsConvert(pdsInner);
+		CDistributionSpecHashed *pdshashed =
+			CDistributionSpecHashed::PdsConvert(pdsInner);
 		CDistributionSpecHashed *pdshashedEquiv = pdshashed->PdshashedEquiv();
 
 		// If the inner child is a IndexScan on a multi-key distributed index, it
@@ -110,8 +102,9 @@ CPhysicalLeftOuterIndexNLJoin::PdsRequired
 		{
 			// request hashed distribution from outer
 			pdshashedEquiv->Pdrgpexpr()->AddRef();
-			CDistributionSpecHashed *pdsHashedRequired =
-				GPOS_NEW(mp) CDistributionSpecHashed(pdshashedEquiv->Pdrgpexpr(), pdshashedEquiv->FNullsColocated());
+			CDistributionSpecHashed *pdsHashedRequired = GPOS_NEW(mp)
+				CDistributionSpecHashed(pdshashedEquiv->Pdrgpexpr(),
+										pdshashedEquiv->FNullsColocated());
 			pdsHashedRequired->ComputeEquivHashExprs(mp, exprhdl);
 
 			return pdsHashedRequired;
@@ -126,12 +119,12 @@ CPhysicalLeftOuterIndexNLJoin::PdsRequired
 	}
 
 	// shouldn't come here!
-	GPOS_RAISE(gpopt::ExmaGPOPT, gpopt::ExmiUnsupportedOp,
-			GPOS_WSZ_LIT("Left outer index nestloop join broadcasting outer side"));
+	GPOS_RAISE(
+		gpopt::ExmaGPOPT, gpopt::ExmiUnsupportedOp,
+		GPOS_WSZ_LIT("Left outer index nestloop join broadcasting outer side"));
 	// otherwise, require outer child to be replicated
 	return GPOS_NEW(mp) CDistributionSpecReplicated();
 }
 
 
 // EOF
-

@@ -23,14 +23,8 @@ using namespace gpos;
 //		ctor
 //
 //---------------------------------------------------------------------------
-CAutoTraceFlag::CAutoTraceFlag
-	(
-	ULONG trace,
-	BOOL orig
-	)
-	:
-	m_trace(trace),
-	m_orig(false)
+CAutoTraceFlag::CAutoTraceFlag(ULONG trace, BOOL orig)
+	: m_trace(trace), m_orig(false)
 {
 	GPOS_ASSERT(NULL != ITask::Self());
 	m_orig = ITask::Self()->SetTrace(m_trace, orig);
@@ -48,7 +42,7 @@ CAutoTraceFlag::CAutoTraceFlag
 CAutoTraceFlag::~CAutoTraceFlag()
 {
 	GPOS_ASSERT(NULL != ITask::Self());
-		
+
 	// reset original value
 	ITask::Self()->SetTrace(m_trace, m_orig);
 }

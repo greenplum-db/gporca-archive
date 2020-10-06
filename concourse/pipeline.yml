@@ -1,6 +1,7 @@
 groups:
   - name: all
     jobs:
+    - check_format
     - xerces_centos5
     - orca_centos5_release
     - orca_centos5_debug
@@ -222,6 +223,7 @@ jobs:
   - in_parallel:
     - get: orca_src
       passed:
+      - check_format
       - orca_centos5_release
       - orca_centos5_debug
       - orca_centos6_release
@@ -297,6 +299,14 @@ jobs:
     - put: bin_xerces_ubuntu18
       params:
         from: package_tarball/bin_xerces_ubuntu18.tar.gz
+
+- name: check_format
+  plan:
+  - in_parallel:
+    - get: orca_src
+      trigger: true
+  - task: check_format
+    file: orca_src/concourse/check_format.yml
 
  ## CentOS5 build
 - name: orca_centos5_release

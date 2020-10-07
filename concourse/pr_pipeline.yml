@@ -82,6 +82,8 @@ jobs:
     params:
       path: orca_src
       status: pending
+  - task: check_format
+    file: orca_src/concourse/check_format.yml
   - in_parallel:
     - task: build_and_test_release
       file: orca_src/concourse/build_and_test.yml
@@ -97,12 +99,13 @@ jobs:
         BUILD_TYPE: --build_type=Debug
         OUTPUT_DIR: --output_dir=build_and_test/install_debug
       timeout: 30m
-    on_failure: &pr_failure
-      put: orca_pr
-      params:
-        path: orca_src
-        status: failure
-  - put: report_pr_success
+  on_failure: &pr_failure
+    put: orca_pr
+    params:
+      path: orca_src
+      status: failure
+  on_success:
+    put: report_pr_success
     resource: orca_pr
     params:
       path: orca_src

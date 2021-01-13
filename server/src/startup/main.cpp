@@ -88,6 +88,7 @@
 #include "unittest/gpopt/minidump/CMinidumpWithConstExprEvaluatorTest.h"
 #include "unittest/gpopt/minidump/CMissingStatsTest.h"
 #include "unittest/gpopt/minidump/CMultilevelPartitionTest.h"
+#include "unittest/gpopt/minidump/CPartitionSelectorRewindabilityTest.h"
 #include "unittest/gpopt/minidump/CPhysicalParallelUnionAllTest.h"
 #include "unittest/gpopt/minidump/CPruneColumnsTest.h"
 #include "unittest/gpopt/minidump/CPullUpProjectElementTest.h"
@@ -178,6 +179,7 @@ static gpos::CUnittest rgut[] = {
 	GPOS_UNITTEST_STD(CDistributionSpecTest),
 	GPOS_UNITTEST_STD(CCastTest),
 	GPOS_UNITTEST_STD(CConstTblGetTest),
+	GPOS_UNITTEST_STD(CPartitionSelectorRewindabilityTest),
 
 #if !defined(GPOS_32BIT)
 	GPOS_UNITTEST_STD(CSubqueryHandlerTest),

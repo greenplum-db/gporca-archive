@@ -9,12 +9,13 @@
 //		Preprocessing routines of window functions
 //---------------------------------------------------------------------------
 
+#include "gpopt/operators/CWindowPreprocessor.h"
+
 #include "gpos/base.h"
 
 #include "gpopt/base/CUtils.h"
 #include "gpopt/operators/CPredicateUtils.h"
 #include "gpopt/operators/ops.h"
-#include "gpopt/operators/CWindowPreprocessor.h"
 #include "gpopt/xforms/CXformUtils.h"
 
 using namespace gpopt;

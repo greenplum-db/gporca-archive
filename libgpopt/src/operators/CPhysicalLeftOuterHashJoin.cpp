@@ -9,10 +9,12 @@
 //		Implementation of left outer hash join operator
 //---------------------------------------------------------------------------
 
-#include "gpos/base.h"
-#include "gpopt/base/CUtils.h"
-#include "gpopt/base/CDistributionSpecHashed.h"
 #include "gpopt/operators/CPhysicalLeftOuterHashJoin.h"
+
+#include "gpos/base.h"
+
+#include "gpopt/base/CDistributionSpecHashed.h"
+#include "gpopt/base/CUtils.h"
 
 
 using namespace gpopt;

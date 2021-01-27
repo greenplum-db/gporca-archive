@@ -9,13 +9,13 @@
 //		Implementation of subquery unnesting base class
 //---------------------------------------------------------------------------
 
+#include "gpopt/xforms/CXformSubqueryUnnest.h"
+
 #include "gpos/base.h"
 
-
-#include "gpopt/operators/ops.h"
 #include "gpopt/operators/CNormalizer.h"
 #include "gpopt/operators/COperator.h"
-#include "gpopt/xforms/CXformSubqueryUnnest.h"
+#include "gpopt/operators/ops.h"
 #include "gpopt/xforms/CSubqueryHandler.h"
 
 

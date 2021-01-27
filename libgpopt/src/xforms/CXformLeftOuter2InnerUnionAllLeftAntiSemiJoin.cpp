@@ -39,7 +39,6 @@
 #include "gpopt/base/CUtils.h"
 #include "gpopt/operators/ops.h"
 #include "gpopt/xforms/CXformUtils.h"
-
 #include "naucrates/traceflags/traceflags.h"
 
 using namespace gpopt;

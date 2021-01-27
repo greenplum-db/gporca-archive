@@ -9,10 +9,11 @@
 //		Implementation of transform
 //---------------------------------------------------------------------------
 
+#include "gpopt/xforms/CXformImplementSequenceProject.h"
+
 #include "gpos/base.h"
 
 #include "gpopt/operators/ops.h"
-#include "gpopt/xforms/CXformImplementSequenceProject.h"
 
 
 using namespace gpopt;

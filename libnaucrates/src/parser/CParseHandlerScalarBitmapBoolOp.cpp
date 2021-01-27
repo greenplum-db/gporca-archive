@@ -11,12 +11,12 @@
 //		bool op
 //---------------------------------------------------------------------------
 
-#include "naucrates/dxl/parser/CParseHandlerScalarOp.h"
-#include "naucrates/dxl/parser/CParseHandlerFactory.h"
+#include "naucrates/dxl/parser/CParseHandlerScalarBitmapBoolOp.h"
+
 #include "naucrates/dxl/CDXLUtils.h"
 #include "naucrates/dxl/operators/CDXLOperatorFactory.h"
-
-#include "naucrates/dxl/parser/CParseHandlerScalarBitmapBoolOp.h"
+#include "naucrates/dxl/parser/CParseHandlerFactory.h"
+#include "naucrates/dxl/parser/CParseHandlerScalarOp.h"
 
 
 using namespace gpdxl;

@@ -23,15 +23,14 @@
 //		fEnforceCorrelatedApply to true
 //---------------------------------------------------------------------------
 
+#include "gpopt/xforms/CSubqueryHandler.h"
+
 #include "gpos/base.h"
 
-#include "gpopt/exception.h"
-
 #include "gpopt/base/CColRefSetIter.h"
+#include "gpopt/exception.h"
 #include "gpopt/operators/ops.h"
-#include "gpopt/xforms/CSubqueryHandler.h"
 #include "gpopt/xforms/CXformUtils.h"
-
 #include "naucrates/md/IMDScalarOp.h"
 #include "naucrates/md/IMDTypeInt8.h"
 

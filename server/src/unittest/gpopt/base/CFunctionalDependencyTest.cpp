@@ -8,11 +8,12 @@
 //	@doc:
 //		Tests for functional dependencies
 //---------------------------------------------------------------------------
+#include "unittest/gpopt/base/CFunctionalDependencyTest.h"
+
 #include "gpopt/base/CFunctionalDependency.h"
 #include "gpopt/eval/CConstExprEvaluatorDefault.h"
 
 #include "unittest/base.h"
-#include "unittest/gpopt/base/CFunctionalDependencyTest.h"
 #include "unittest/gpopt/CTestUtils.h"
 
 

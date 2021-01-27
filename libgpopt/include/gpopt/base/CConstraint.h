@@ -12,8 +12,8 @@
 #define GPOPT_CConstraint_H
 
 #include "gpos/base.h"
-#include "gpos/types.h"
 #include "gpos/common/CRefCount.h"
+#include "gpos/types.h"
 
 #include "gpopt/base/CRange.h"
 

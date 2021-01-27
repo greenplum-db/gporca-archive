@@ -9,41 +9,39 @@
 //		Statistics helper routines
 //---------------------------------------------------------------------------
 
+#include "naucrates/statistics/CStatisticsUtils.h"
+
 #include "gpos/base.h"
 
-#include "gpopt/base/CUtils.h"
-#include "gpopt/base/CColRefTable.h"
 #include "gpopt/base/CColRefSetIter.h"
+#include "gpopt/base/CColRefTable.h"
+#include "gpopt/base/CUtils.h"
+#include "gpopt/engine/CStatisticsConfig.h"
 #include "gpopt/exception.h"
-#include "gpopt/operators/ops.h"
+#include "gpopt/mdcache/CMDAccessor.h"
 #include "gpopt/operators/CExpressionUtils.h"
 #include "gpopt/operators/CPredicateUtils.h"
-#include "gpopt/mdcache/CMDAccessor.h"
-#include "gpopt/engine/CStatisticsConfig.h"
+#include "gpopt/operators/ops.h"
 #include "gpopt/optimizer/COptimizerConfig.h"
-
-#include "naucrates/statistics/CStatisticsUtils.h"
-#include "naucrates/statistics/CJoinStatsProcessor.h"
-#include "naucrates/statistics/CFilterStatsProcessor.h"
-#include "naucrates/statistics/CStatistics.h"
-#include "naucrates/statistics/CStatsPredUtils.h"
-#include "naucrates/statistics/CStatsPredDisj.h"
-#include "naucrates/statistics/CStatsPredConj.h"
-#include "naucrates/statistics/CStatsPredLike.h"
-#include "naucrates/statistics/CScaleFactorUtils.h"
-#include "naucrates/statistics/CHistogram.h"
-
+#include "naucrates/base/IDatumInt2.h"
+#include "naucrates/base/IDatumInt4.h"
+#include "naucrates/base/IDatumInt8.h"
+#include "naucrates/base/IDatumOid.h"
+#include "naucrates/md/CMDIdColStats.h"
 #include "naucrates/md/IMDScalarOp.h"
 #include "naucrates/md/IMDType.h"
 #include "naucrates/md/IMDTypeInt2.h"
 #include "naucrates/md/IMDTypeInt8.h"
 #include "naucrates/md/IMDTypeOid.h"
-#include "naucrates/md/CMDIdColStats.h"
-
-#include "naucrates/base/IDatumInt2.h"
-#include "naucrates/base/IDatumInt4.h"
-#include "naucrates/base/IDatumInt8.h"
-#include "naucrates/base/IDatumOid.h"
+#include "naucrates/statistics/CFilterStatsProcessor.h"
+#include "naucrates/statistics/CHistogram.h"
+#include "naucrates/statistics/CJoinStatsProcessor.h"
+#include "naucrates/statistics/CScaleFactorUtils.h"
+#include "naucrates/statistics/CStatistics.h"
+#include "naucrates/statistics/CStatsPredConj.h"
+#include "naucrates/statistics/CStatsPredDisj.h"
+#include "naucrates/statistics/CStatsPredLike.h"
+#include "naucrates/statistics/CStatsPredUtils.h"
 
 using namespace gpopt;
 using namespace gpmd;

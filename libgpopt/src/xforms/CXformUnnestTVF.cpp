@@ -9,12 +9,13 @@
 //		Implementation of TVF unnesting xform
 //---------------------------------------------------------------------------
 
+#include "gpopt/xforms/CXformUnnestTVF.h"
+
 #include "gpos/base.h"
 #include "gpos/common/CHashMap.h"
-#include "gpopt/xforms/CXformUnnestTVF.h"
-#include "gpopt/xforms/CXformUtils.h"
 
 #include "gpopt/operators/ops.h"
+#include "gpopt/xforms/CXformUtils.h"
 
 using namespace gpopt;
 

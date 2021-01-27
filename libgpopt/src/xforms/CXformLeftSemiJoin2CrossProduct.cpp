@@ -9,12 +9,12 @@
 //		Implementation of transform
 //---------------------------------------------------------------------------
 
+#include "gpopt/xforms/CXformLeftSemiJoin2CrossProduct.h"
+
 #include "gpos/base.h"
 
-
-#include "gpopt/operators/ops.h"
 #include "gpopt/operators/CNormalizer.h"
-#include "gpopt/xforms/CXformLeftSemiJoin2CrossProduct.h"
+#include "gpopt/operators/ops.h"
 #include "gpopt/xforms/CXformUtils.h"
 
 

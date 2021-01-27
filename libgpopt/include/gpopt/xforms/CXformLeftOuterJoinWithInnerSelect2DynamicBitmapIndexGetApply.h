@@ -11,6 +11,7 @@
 #define GPOPT_CXformLeftOuterJoinWithInnerSelect2DynamicBitmapIndexGetApply_H
 
 #include "gpos/base.h"
+
 #include "gpopt/xforms/CXformJoin2IndexApplyBase.h"
 
 namespace gpopt

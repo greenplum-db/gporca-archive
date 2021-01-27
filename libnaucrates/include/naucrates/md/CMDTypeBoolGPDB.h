@@ -16,8 +16,8 @@
 
 #include "gpos/base.h"
 
-#include "naucrates/md/IMDTypeBool.h"
 #include "naucrates/base/IDatumBool.h"
+#include "naucrates/md/IMDTypeBool.h"
 
 #define GPDB_BOOL_OID OID(16)
 #define GPDB_BOOL_LENGTH 1

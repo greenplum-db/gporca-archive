@@ -13,6 +13,7 @@
 #define GPOPT_CXformImplementLeftAntiSemiCorrelatedApplyNotIn_H
 
 #include "gpos/base.h"
+
 #include "gpopt/xforms/CXformImplementCorrelatedApply.h"
 
 namespace gpopt

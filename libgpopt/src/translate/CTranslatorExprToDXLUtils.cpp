@@ -12,27 +12,22 @@
 
 #include "gpopt/translate/CTranslatorExprToDXLUtils.h"
 
-#include "gpopt/mdcache/CMDAccessorUtils.h"
-#include "naucrates/md/IMDCast.h"
-
-#include "gpopt/exception.h"
-
-#include "naucrates/dxl/operators/dxlops.h"
-#include "naucrates/dxl/operators/CDXLDatumInt4.h"
-#include "naucrates/dxl/operators/CDXLDatumBool.h"
-#include "naucrates/dxl/operators/CDXLDatumOid.h"
-#include "naucrates/dxl/operators/CDXLDirectDispatchInfo.h"
-
-#include "naucrates/md/IMDScalarOp.h"
-#include "naucrates/md/IMDTypeOid.h"
-
-#include "naucrates/statistics/IStatistics.h"
-
 #include "gpopt/base/CConstraint.h"
 #include "gpopt/base/CConstraintConjunction.h"
 #include "gpopt/base/CConstraintDisjunction.h"
-#include "gpopt/base/CConstraintNegation.h"
 #include "gpopt/base/CConstraintInterval.h"
+#include "gpopt/base/CConstraintNegation.h"
+#include "gpopt/exception.h"
+#include "gpopt/mdcache/CMDAccessorUtils.h"
+#include "naucrates/dxl/operators/CDXLDatumBool.h"
+#include "naucrates/dxl/operators/CDXLDatumInt4.h"
+#include "naucrates/dxl/operators/CDXLDatumOid.h"
+#include "naucrates/dxl/operators/CDXLDirectDispatchInfo.h"
+#include "naucrates/dxl/operators/dxlops.h"
+#include "naucrates/md/IMDCast.h"
+#include "naucrates/md/IMDScalarOp.h"
+#include "naucrates/md/IMDTypeOid.h"
+#include "naucrates/statistics/IStatistics.h"
 
 using namespace gpos;
 using namespace gpmd;

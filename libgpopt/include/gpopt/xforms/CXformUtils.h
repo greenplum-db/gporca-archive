@@ -13,10 +13,9 @@
 
 #include "gpos/base.h"
 
-#include "gpopt/base/CUtils.h"
 #include "gpopt/base/CCastUtils.h"
 #include "gpopt/base/CColRef.h"
-
+#include "gpopt/base/CUtils.h"
 #include "gpopt/operators/ops.h"
 #include "gpopt/xforms/CXform.h"
 

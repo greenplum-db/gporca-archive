@@ -9,8 +9,9 @@
 //		Implementation of limit operator
 //---------------------------------------------------------------------------
 
-#include "gpos/base.h"
 #include "gpopt/xforms/CXformImplementLimit.h"
+
+#include "gpos/base.h"
 
 #include "gpopt/operators/ops.h"
 

@@ -9,23 +9,20 @@
 //		Implementation of the class for representing GPDB generic types
 //---------------------------------------------------------------------------
 
-#include "gpopt/base/COptCtxt.h"
+#include "naucrates/md/CMDTypeGenericGPDB.h"
 
 #include "gpos/string/CWStringDynamic.h"
 
-#include "naucrates/md/CMDTypeGenericGPDB.h"
-#include "naucrates/md/CGPDBTypeHelper.h"
-
+#include "gpopt/base/COptCtxt.h"
 #include "naucrates/base/CDatumGenericGPDB.h"
-#include "naucrates/statistics/CStatsPredUtils.h"
-
-#include "naucrates/dxl/operators/CDXLScalarConstValue.h"
+#include "naucrates/dxl/CDXLUtils.h"
+#include "naucrates/dxl/operators/CDXLDatumGeneric.h"
 #include "naucrates/dxl/operators/CDXLDatumStatsDoubleMappable.h"
 #include "naucrates/dxl/operators/CDXLDatumStatsLintMappable.h"
-#include "naucrates/dxl/operators/CDXLDatumGeneric.h"
-
+#include "naucrates/dxl/operators/CDXLScalarConstValue.h"
 #include "naucrates/dxl/xml/CXMLSerializer.h"
-#include "naucrates/dxl/CDXLUtils.h"
+#include "naucrates/md/CGPDBTypeHelper.h"
+#include "naucrates/statistics/CStatsPredUtils.h"
 
 using namespace gpnaucrates;
 using namespace gpdxl;

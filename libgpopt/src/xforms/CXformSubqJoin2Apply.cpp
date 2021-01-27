@@ -9,13 +9,14 @@
 //		Implementation of Inner Join to Apply transform
 //---------------------------------------------------------------------------
 
+#include "gpopt/xforms/CXformSubqJoin2Apply.h"
+
 #include "gpos/base.h"
 
-#include "gpopt/operators/ops.h"
 #include "gpopt/operators/CNormalizer.h"
 #include "gpopt/operators/CPredicateUtils.h"
+#include "gpopt/operators/ops.h"
 #include "gpopt/xforms/CSubqueryHandler.h"
-#include "gpopt/xforms/CXformSubqJoin2Apply.h"
 #include "gpopt/xforms/CXformUtils.h"
 
 

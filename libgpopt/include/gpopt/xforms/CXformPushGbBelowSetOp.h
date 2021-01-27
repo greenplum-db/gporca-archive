@@ -12,9 +12,10 @@
 #define GPOPT_CXformPushGbBelowSetOp_H
 
 #include "gpos/base.h"
+
 #include "gpopt/operators/ops.h"
-#include "gpopt/xforms/CXformExploration.h"
 #include "gpopt/optimizer/COptimizerConfig.h"
+#include "gpopt/xforms/CXformExploration.h"
 
 namespace gpopt
 {

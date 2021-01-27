@@ -9,30 +9,27 @@
 //		Implementation of dynamic programming-based join order generation
 //---------------------------------------------------------------------------
 
-#include "gpos/base.h"
+#include "gpopt/xforms/CJoinOrderDPv2.h"
 
+#include "gpos/base.h"
+#include "gpos/common/CBitSet.h"
+#include "gpos/common/CBitSetIter.h"
+#include "gpos/common/clibwrapper.h"
 #include "gpos/io/COstreamString.h"
 #include "gpos/string/CWStringDynamic.h"
 
-#include "gpos/common/clibwrapper.h"
-#include "gpos/common/CBitSet.h"
-#include "gpos/common/CBitSetIter.h"
-
 #include "gpopt/base/CDrvdPropScalar.h"
 #include "gpopt/base/CUtils.h"
+#include "gpopt/cost/ICostModelParams.h"
+#include "gpopt/exception.h"
+#include "gpopt/operators/CNormalizer.h"
+#include "gpopt/operators/CPredicateUtils.h"
+#include "gpopt/operators/CScalarNAryJoinPredList.h"
 #include "gpopt/operators/ops.h"
 #include "gpopt/optimizer/COptimizerConfig.h"
-#include "gpopt/operators/CPredicateUtils.h"
-#include "gpopt/operators/CNormalizer.h"
-#include "gpopt/operators/CScalarNAryJoinPredList.h"
-#include "gpopt/xforms/CJoinOrderDPv2.h"
-
-#include "gpopt/exception.h"
-#include "naucrates/md/IMDRelStats.h"
-
-#include "naucrates/statistics/CJoinStatsProcessor.h"
 #include "naucrates/md/CMDIdRelStats.h"
-#include "gpopt/cost/ICostModelParams.h"
+#include "naucrates/md/IMDRelStats.h"
+#include "naucrates/statistics/CJoinStatsProcessor.h"
 
 
 using namespace gpopt;

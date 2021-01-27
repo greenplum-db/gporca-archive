@@ -17,10 +17,10 @@
 #include "gpos/base.h"
 #include "gpos/common/CRefCount.h"
 
-#include "naucrates/statistics/IStatistics.h"
-
 #include "gpopt/operators/COperator.h"
 #include "naucrates/md/IMDRelation.h"
+#include "naucrates/statistics/IStatistics.h"
+
 #include "CCost.h"
 #include "ICostModelParams.h"
 

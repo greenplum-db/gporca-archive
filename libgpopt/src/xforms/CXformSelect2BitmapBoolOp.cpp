@@ -15,8 +15,9 @@
 //
 //---------------------------------------------------------------------------
 
-#include "gpopt/operators/ops.h"
 #include "gpopt/xforms/CXformSelect2BitmapBoolOp.h"
+
+#include "gpopt/operators/ops.h"
 #include "gpopt/xforms/CXformUtils.h"
 
 using namespace gpmd;

@@ -15,11 +15,10 @@
 #ifndef GPOS_utils_H
 #define GPOS_utils_H
 
-#include "gpos/types.h"
-
 #include "gpos/common/clibwrapper.h"
 #include "gpos/error/CException.h"
 #include "gpos/io/COstreamBasic.h"
+#include "gpos/types.h"
 
 #if (GPOS_i386 || GPOS_i686 || GPOS_x86_64) && (GPOS_32BIT)
 #define GPOS_ASMFP asm volatile("movl %%ebp, %0" : "=g"(ulp));

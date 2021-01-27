@@ -13,7 +13,6 @@
 
 #include "gpopt/operators/ops.h"
 #include "gpopt/optimizer/COptimizerConfig.h"
-
 #include "naucrates/statistics/CStatistics.h"
 
 namespace gpnaucrates

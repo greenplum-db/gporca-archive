@@ -10,20 +10,18 @@
 //		config params
 //---------------------------------------------------------------------------
 
-#include "gpos/common/CBitSet.h"
-
 #include "naucrates/dxl/parser/CParseHandlerCostModel.h"
-#include "naucrates/dxl/parser/CParseHandlerManager.h"
-#include "naucrates/dxl/parser/CParseHandlerFactory.h"
-#include "naucrates/dxl/parser/CParseHandlerCostParams.h"
 
-#include "naucrates/dxl/operators/CDXLOperatorFactory.h"
-#include "naucrates/traceflags/traceflags.h"
-
-#include "naucrates/dxl/xml/dxltokens.h"
+#include "gpos/common/CBitSet.h"
 
 #include "gpdbcost/CCostModelGPDB.h"
 #include "gpdbcost/CCostModelGPDBLegacy.h"
+#include "naucrates/dxl/operators/CDXLOperatorFactory.h"
+#include "naucrates/dxl/parser/CParseHandlerCostParams.h"
+#include "naucrates/dxl/parser/CParseHandlerFactory.h"
+#include "naucrates/dxl/parser/CParseHandlerManager.h"
+#include "naucrates/dxl/xml/dxltokens.h"
+#include "naucrates/traceflags/traceflags.h"
 
 using namespace gpdxl;
 using namespace gpdbcost;

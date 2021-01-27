@@ -9,11 +9,12 @@
 //		Implementation of expression tree normalizer
 //---------------------------------------------------------------------------
 
+#include "gpopt/operators/CNormalizer.h"
+
 #include "gpos/base.h"
 #include "gpos/memory/CAutoMemoryPool.h"
 
 #include "gpopt/base/CUtils.h"
-#include "gpopt/operators/CNormalizer.h"
 #include "gpopt/operators/CPredicateUtils.h"
 #include "gpopt/operators/CScalarNAryJoinPredList.h"
 #include "gpopt/operators/ops.h"

@@ -10,26 +10,25 @@
 //---------------------------------------------------------------------------
 
 #include "gpos/base.h"
-#include "gpos/task/CAutoTraceFlag.h"
-#include "gpos/task/CAutoSuspendAbort.h"
-#include "gpos/task/CWorker.h"
 #include "gpos/io/COstreamString.h"
 #include "gpos/string/CWStringDynamic.h"
-
-#include "gpopt/exception.h"
+#include "gpos/task/CAutoSuspendAbort.h"
+#include "gpos/task/CAutoTraceFlag.h"
+#include "gpos/task/CWorker.h"
 
 #include "gpopt/base/CAutoOptCtxt.h"
 #include "gpopt/base/CColRefSet.h"
 #include "gpopt/base/CDistributionSpec.h"
-#include "gpopt/base/CDrvdPropCtxtRelational.h"
 #include "gpopt/base/CDrvdPropCtxtPlan.h"
+#include "gpopt/base/CDrvdPropCtxtRelational.h"
 #include "gpopt/base/CDrvdPropRelational.h"
+#include "gpopt/base/CPrintPrefix.h"
 #include "gpopt/base/CReqdPropRelational.h"
 #include "gpopt/base/CUtils.h"
-#include "gpopt/base/CPrintPrefix.h"
+#include "gpopt/exception.h"
 #include "gpopt/metadata/CTableDescriptor.h"
-#include "gpopt/operators/ops.h"
 #include "gpopt/operators/CExpressionHandle.h"
+#include "gpopt/operators/ops.h"
 #include "gpopt/search/CGroupExpression.h"
 #include "naucrates/traceflags/traceflags.h"
 

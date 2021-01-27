@@ -9,10 +9,11 @@
 //		Implementation of Project to Apply transform
 //---------------------------------------------------------------------------
 
+#include "gpopt/xforms/CXformProject2Apply.h"
+
 #include "gpos/base.h"
 
 #include "gpopt/operators/ops.h"
-#include "gpopt/xforms/CXformProject2Apply.h"
 
 using namespace gpopt;
 

@@ -9,10 +9,11 @@
 //		Specification of replicated distribution
 //---------------------------------------------------------------------------
 
-#include "naucrates/traceflags/traceflags.h"
 #include "gpopt/base/CDistributionSpecReplicated.h"
+
 #include "gpopt/base/CDistributionSpecNonSingleton.h"
 #include "gpopt/operators/CPhysicalMotionBroadcast.h"
+#include "naucrates/traceflags/traceflags.h"
 
 #define GPOPT_DISTR_SPEC_COLREF_HASHED (ULONG(5))
 #define GPOPT_DISTR_SPEC_COLREF_MATCH_NL (ULONG(20))

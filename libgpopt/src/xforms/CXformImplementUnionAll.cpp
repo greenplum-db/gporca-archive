@@ -9,15 +9,15 @@
 //		Implementation of union all operator
 //---------------------------------------------------------------------------
 
+#include "gpopt/xforms/CXformImplementUnionAll.h"
+
 #include "gpos/base.h"
 
 #include "gpopt/exception.h"
-#include "gpopt/xforms/CXformImplementUnionAll.h"
-#include "gpopt/xforms/CXformUtils.h"
 #include "gpopt/operators/CPhysicalUnionAll.h"
 #include "gpopt/operators/CPhysicalUnionAllFactory.h"
-
 #include "gpopt/operators/ops.h"
+#include "gpopt/xforms/CXformUtils.h"
 
 using namespace gpopt;
 

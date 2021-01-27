@@ -9,9 +9,9 @@
 //		Implementation of print prefix class
 //---------------------------------------------------------------------------
 
-#include "gpos/base.h"
-
 #include "gpopt/base/CPrintPrefix.h"
+
+#include "gpos/base.h"
 
 using namespace gpopt;
 

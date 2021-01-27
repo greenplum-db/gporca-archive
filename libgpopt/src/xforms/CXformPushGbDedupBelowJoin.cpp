@@ -9,10 +9,11 @@
 //		Implementation of pushing dedup group by below join transform
 //---------------------------------------------------------------------------
 
+#include "gpopt/xforms/CXformPushGbDedupBelowJoin.h"
+
 #include "gpos/base.h"
 
 #include "gpopt/operators/ops.h"
-#include "gpopt/xforms/CXformPushGbDedupBelowJoin.h"
 #include "gpopt/xforms/CXformUtils.h"
 
 

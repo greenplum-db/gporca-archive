@@ -9,6 +9,8 @@
 //		Implementation of transform
 //---------------------------------------------------------------------------
 
+#include "gpopt/xforms/CXformLeftSemiJoin2InnerJoin.h"
+
 #include "gpos/base.h"
 #include "gpos/memory/CAutoMemoryPool.h"
 
@@ -16,7 +18,6 @@
 #include "gpopt/base/CColRefTable.h"
 #include "gpopt/base/CKeyCollection.h"
 #include "gpopt/operators/ops.h"
-#include "gpopt/xforms/CXformLeftSemiJoin2InnerJoin.h"
 
 
 

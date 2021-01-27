@@ -12,6 +12,7 @@
 #define GPDXL_CParseHandlerPhysicalRowTrigger_H
 
 #include "gpos/base.h"
+
 #include "naucrates/dxl/parser/CParseHandlerPhysicalOp.h"
 
 

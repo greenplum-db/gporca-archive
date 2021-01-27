@@ -8,15 +8,15 @@
 //	@doc:
 //		Test for ranges
 //---------------------------------------------------------------------------
-#include "unittest/base.h"
 #include "unittest/gpopt/base/CRangeTest.h"
 
+#include "gpopt/base/CDefaultComparator.h"
+#include "gpopt/eval/CConstExprEvaluatorDefault.h"
 #include "naucrates/base/CDatumInt2GPDB.h"
 #include "naucrates/base/CDatumInt4GPDB.h"
 #include "naucrates/base/CDatumInt8GPDB.h"
 
-#include "gpopt/base/CDefaultComparator.h"
-#include "gpopt/eval/CConstExprEvaluatorDefault.h"
+#include "unittest/base.h"
 
 //---------------------------------------------------------------------------
 //	@function:

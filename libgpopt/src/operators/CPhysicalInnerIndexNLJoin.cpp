@@ -9,17 +9,17 @@
 //		Implementation of index inner nested-loops join operator
 //---------------------------------------------------------------------------
 
+#include "gpopt/operators/CPhysicalInnerIndexNLJoin.h"
+
 #include "gpos/base.h"
-#include "gpopt/base/CUtils.h"
-#include "gpopt/base/CDistributionSpecReplicated.h"
+
+#include "gpopt/base/CDistributionSpecAny.h"
 #include "gpopt/base/CDistributionSpecHashed.h"
 #include "gpopt/base/CDistributionSpecNonSingleton.h"
-#include "gpopt/base/CDistributionSpecAny.h"
+#include "gpopt/base/CDistributionSpecReplicated.h"
+#include "gpopt/base/CUtils.h"
 #include "gpopt/operators/CExpressionHandle.h"
 #include "gpopt/operators/CPredicateUtils.h"
-
-
-#include "gpopt/operators/CPhysicalInnerIndexNLJoin.h"
 
 
 

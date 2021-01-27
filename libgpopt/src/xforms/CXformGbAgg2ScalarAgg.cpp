@@ -9,13 +9,13 @@
 //		Implementation of transform
 //---------------------------------------------------------------------------
 
+#include "gpopt/xforms/CXformGbAgg2ScalarAgg.h"
+
 #include "gpos/base.h"
 
 #include "gpopt/operators/ops.h"
-
-#include "gpopt/xforms/CXformUtils.h"
-#include "gpopt/xforms/CXformGbAgg2ScalarAgg.h"
 #include "gpopt/xforms/CXformGbAgg2HashAgg.h"
+#include "gpopt/xforms/CXformUtils.h"
 
 using namespace gpopt;
 

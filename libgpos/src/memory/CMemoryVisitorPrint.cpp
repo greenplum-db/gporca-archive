@@ -16,12 +16,13 @@
 //
 //---------------------------------------------------------------------------
 
+#include "gpos/memory/CMemoryVisitorPrint.h"
+
 #include "gpos/assert.h"
+#include "gpos/common/CStackDescriptor.h"
+#include "gpos/string/CWStringStatic.h"
 #include "gpos/types.h"
 #include "gpos/utils.h"
-#include "gpos/common/CStackDescriptor.h"
-#include "gpos/memory/CMemoryVisitorPrint.h"
-#include "gpos/string/CWStringStatic.h"
 
 using namespace gpos;
 

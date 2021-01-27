@@ -9,10 +9,11 @@
 //		Implementation of Select to Apply transform
 //---------------------------------------------------------------------------
 
+#include "gpopt/xforms/CXformSelect2Apply.h"
+
 #include "gpos/base.h"
 
 #include "gpopt/operators/ops.h"
-#include "gpopt/xforms/CXformSelect2Apply.h"
 
 using namespace gpopt;
 

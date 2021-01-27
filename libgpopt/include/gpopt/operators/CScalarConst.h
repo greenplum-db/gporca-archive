@@ -15,9 +15,8 @@
 
 #include "gpopt/base/CColRefSet.h"
 #include "gpopt/base/CDrvdProp.h"
-#include "naucrates/base/IDatum.h"
 #include "gpopt/operators/CScalar.h"
-
+#include "naucrates/base/IDatum.h"
 #include "naucrates/md/CMDTypeBoolGPDB.h"
 
 namespace gpopt

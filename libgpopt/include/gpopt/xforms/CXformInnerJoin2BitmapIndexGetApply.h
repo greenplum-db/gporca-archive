@@ -19,6 +19,7 @@
 #define GPOPT_CXformInnerJoin2BitmapIndexGetApply_H
 
 #include "gpos/base.h"
+
 #include "gpopt/xforms/CXformJoin2IndexApplyBase.h"
 
 namespace gpopt

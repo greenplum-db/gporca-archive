@@ -11,13 +11,12 @@
 
 #include "gpos/base.h"
 
-#include "gpopt/base/COptCtxt.h"
-#include "gpopt/base/CUtils.h"
+#include "gpopt/base/CCTEReq.h"
 #include "gpopt/base/CDistributionSpecAny.h"
 #include "gpopt/base/CDistributionSpecNonSingleton.h"
 #include "gpopt/base/CDistributionSpecSingleton.h"
-#include "gpopt/base/CCTEReq.h"
-
+#include "gpopt/base/COptCtxt.h"
+#include "gpopt/base/CUtils.h"
 #include "gpopt/operators/ops.h"
 
 using namespace gpopt;

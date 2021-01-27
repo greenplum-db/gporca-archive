@@ -10,9 +10,10 @@
 //---------------------------------------------------------------------------
 
 
+#include "gpos/io/CFileDescriptor.h"
+
 #include "gpos/base.h"
 #include "gpos/io/ioutils.h"
-#include "gpos/io/CFileDescriptor.h"
 #include "gpos/string/CStringStatic.h"
 
 using namespace gpos;

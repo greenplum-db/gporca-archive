@@ -8,18 +8,18 @@
 //	@doc:
 //		Test for predicate utilities
 //---------------------------------------------------------------------------
+#include "unittest/gpopt/operators/CPredicateUtilsTest.h"
+
 #include "gpopt/base/CColRefSetIter.h"
 #include "gpopt/base/CUtils.h"
 #include "gpopt/eval/CConstExprEvaluatorDefault.h"
 #include "gpopt/operators/CExpressionPreprocessor.h"
 #include "gpopt/operators/CLogicalInnerJoin.h"
 #include "gpopt/operators/CPredicateUtils.h"
+#include "naucrates/md/CMDIdGPDB.h"
 
 #include "unittest/base.h"
-#include "unittest/gpopt/operators/CPredicateUtilsTest.h"
 #include "unittest/gpopt/CTestUtils.h"
-
-#include "naucrates/md/CMDIdGPDB.h"
 
 
 //---------------------------------------------------------------------------

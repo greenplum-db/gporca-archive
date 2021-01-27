@@ -9,15 +9,15 @@
 //		Statistics helper routines for processing all join types
 //---------------------------------------------------------------------------
 
-#include "gpopt/operators/ops.h"
-#include "gpopt/operators/CScalarNAryJoinPredList.h"
-#include "gpopt/optimizer/COptimizerConfig.h"
-
-#include "naucrates/statistics/CStatisticsUtils.h"
 #include "naucrates/statistics/CJoinStatsProcessor.h"
-#include "naucrates/statistics/CLeftAntiSemiJoinStatsProcessor.h"
+
+#include "gpopt/operators/CScalarNAryJoinPredList.h"
+#include "gpopt/operators/ops.h"
+#include "gpopt/optimizer/COptimizerConfig.h"
 #include "naucrates/statistics/CFilterStatsProcessor.h"
+#include "naucrates/statistics/CLeftAntiSemiJoinStatsProcessor.h"
 #include "naucrates/statistics/CScaleFactorUtils.h"
+#include "naucrates/statistics/CStatisticsUtils.h"
 
 using namespace gpopt;
 

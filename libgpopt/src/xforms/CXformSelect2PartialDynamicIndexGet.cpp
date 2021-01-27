@@ -9,16 +9,15 @@
 //		Implementation of select over a partitioned table to a dynamic index get
 //---------------------------------------------------------------------------
 
+#include "gpopt/xforms/CXformSelect2PartialDynamicIndexGet.h"
+
 #include "gpos/base.h"
 
 #include "gpopt/metadata/CPartConstraint.h"
-
 #include "gpopt/operators/ops.h"
-#include "gpopt/xforms/CXformSelect2PartialDynamicIndexGet.h"
 #include "gpopt/xforms/CXformUtils.h"
-
-#include "naucrates/md/CMDRelationGPDB.h"
 #include "naucrates/md/CMDIndexGPDB.h"
+#include "naucrates/md/CMDRelationGPDB.h"
 #include "naucrates/md/IMDPartConstraint.h"
 
 using namespace gpopt;

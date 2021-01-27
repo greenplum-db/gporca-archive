@@ -9,10 +9,11 @@
 //		Implementation of the transform that collapses two cascaded project nodes
 //---------------------------------------------------------------------------
 
+#include "gpopt/xforms/CXformCollapseProject.h"
+
 #include "gpos/base.h"
 
 #include "gpopt/operators/ops.h"
-#include "gpopt/xforms/CXformCollapseProject.h"
 
 using namespace gpopt;
 

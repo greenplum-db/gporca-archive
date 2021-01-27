@@ -13,11 +13,10 @@
 
 #include "gpopt/operators/ops.h"
 #include "gpopt/optimizer/COptimizerConfig.h"
-
-#include "naucrates/statistics/CStatistics.h"
 #include "naucrates/statistics/CGroupByStatsProcessor.h"
-#include "naucrates/statistics/CStatisticsUtils.h"
 #include "naucrates/statistics/CScaleFactorUtils.h"
+#include "naucrates/statistics/CStatistics.h"
+#include "naucrates/statistics/CStatisticsUtils.h"
 
 namespace gpnaucrates
 {

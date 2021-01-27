@@ -2,12 +2,13 @@
 //	Greenplum Database
 //	Copyright (C) 2019 Pivotal Software, Inc.
 
-#include "gpos/base.h"
 #include "gpopt/xforms/CXformImplementFullOuterMergeJoin.h"
-#include "gpopt/operators/CPhysicalFullMergeJoin.h"
-#include "gpopt/xforms/CXformUtils.h"
 
+#include "gpos/base.h"
+
+#include "gpopt/operators/CPhysicalFullMergeJoin.h"
 #include "gpopt/operators/ops.h"
+#include "gpopt/xforms/CXformUtils.h"
 
 using namespace gpopt;
 

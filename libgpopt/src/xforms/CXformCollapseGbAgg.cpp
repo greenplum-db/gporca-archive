@@ -10,12 +10,13 @@
 //		into a single group-by
 //---------------------------------------------------------------------------
 
+#include "gpopt/xforms/CXformCollapseGbAgg.h"
+
 #include "gpos/base.h"
 
 #include "gpopt/base/CUtils.h"
-#include "gpopt/operators/ops.h"
 #include "gpopt/operators/COperator.h"
-#include "gpopt/xforms/CXformCollapseGbAgg.h"
+#include "gpopt/operators/ops.h"
 
 using namespace gpmd;
 using namespace gpopt;

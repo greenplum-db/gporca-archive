@@ -12,21 +12,21 @@
 #define GPOPT_CExpression_H
 
 #include "gpos/base.h"
-#include "gpos/common/CRefCount.h"
 #include "gpos/common/CDynamicPtrArray.h"
+#include "gpos/common/CRefCount.h"
 
-#include "naucrates/statistics/CStatistics.h"
-#include "gpopt/cost/CCost.h"
 #include "gpopt/base/CColRef.h"
 #include "gpopt/base/CCostContext.h"
 #include "gpopt/base/CDrvdPropRelational.h"
 #include "gpopt/base/CDrvdPropScalar.h"
+#include "gpopt/base/CKeyCollection.h"
+#include "gpopt/base/CPrintPrefix.h"
 #include "gpopt/base/CReqdProp.h"
 #include "gpopt/base/CReqdPropRelational.h"
-#include "gpopt/base/CPrintPrefix.h"
-#include "gpopt/operators/COperator.h"
-#include "gpopt/base/CKeyCollection.h"
+#include "gpopt/cost/CCost.h"
 #include "gpopt/metadata/CTableDescriptor.h"
+#include "gpopt/operators/COperator.h"
+#include "naucrates/statistics/CStatistics.h"
 
 
 namespace gpopt

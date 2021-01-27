@@ -10,33 +10,32 @@
 //---------------------------------------------------------------------------
 
 
+#include "gpopt/xforms/CXformUtils.h"
+
 #include "gpos/base.h"
 #include "gpos/error/CMessage.h"
 #include "gpos/error/CMessageRepository.h"
 #include "gpos/memory/CAutoMemoryPool.h"
 
-#include "naucrates/base/CDatumInt8GPDB.h"
-#include "naucrates/md/CMDIdGPDB.h"
-#include "naucrates/md/CMDTriggerGPDB.h"
-#include "naucrates/md/IMDScalarOp.h"
-#include "naucrates/md/IMDTypeInt8.h"
-#include "naucrates/md/IMDTypeOid.h"
-#include "naucrates/md/IMDTrigger.h"
-#include "naucrates/md/IMDCheckConstraint.h"
-
 #include "gpopt/base/CConstraintConjunction.h"
 #include "gpopt/base/CConstraintNegation.h"
 #include "gpopt/base/CKeyCollection.h"
 #include "gpopt/base/CUtils.h"
+#include "gpopt/engine/CHint.h"
+#include "gpopt/exception.h"
+#include "gpopt/optimizer/COptimizerConfig.h"
 #include "gpopt/search/CGroupExpression.h"
 #include "gpopt/search/CGroupProxy.h"
-#include "gpopt/xforms/CXformExploration.h"
 #include "gpopt/xforms/CDecorrelator.h"
-#include "gpopt/xforms/CXformUtils.h"
-#include "gpopt/optimizer/COptimizerConfig.h"
-#include "gpopt/exception.h"
-#include "gpopt/engine/CHint.h"
-
+#include "gpopt/xforms/CXformExploration.h"
+#include "naucrates/base/CDatumInt8GPDB.h"
+#include "naucrates/md/CMDIdGPDB.h"
+#include "naucrates/md/CMDTriggerGPDB.h"
+#include "naucrates/md/IMDCheckConstraint.h"
+#include "naucrates/md/IMDScalarOp.h"
+#include "naucrates/md/IMDTrigger.h"
+#include "naucrates/md/IMDTypeInt8.h"
+#include "naucrates/md/IMDTypeOid.h"
 #include "naucrates/statistics/CFilterStatsProcessor.h"
 using namespace gpopt;
 

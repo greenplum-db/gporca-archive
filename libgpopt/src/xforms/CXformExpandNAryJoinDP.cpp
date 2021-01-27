@@ -9,17 +9,18 @@
 //		Implementation of n-ary join expansion using dynamic programming
 //---------------------------------------------------------------------------
 
+#include "gpopt/xforms/CXformExpandNAryJoinDP.h"
+
 #include "gpos/base.h"
 
 #include "gpopt/base/CUtils.h"
 #include "gpopt/engine/CHint.h"
-#include "gpopt/optimizer/COptimizerConfig.h"
-#include "gpopt/operators/ops.h"
 #include "gpopt/operators/CNormalizer.h"
 #include "gpopt/operators/CPredicateUtils.h"
-#include "gpopt/xforms/CXformExpandNAryJoinDP.h"
-#include "gpopt/xforms/CXformUtils.h"
+#include "gpopt/operators/ops.h"
+#include "gpopt/optimizer/COptimizerConfig.h"
 #include "gpopt/xforms/CJoinOrderDP.h"
+#include "gpopt/xforms/CXformUtils.h"
 
 
 

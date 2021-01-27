@@ -9,10 +9,11 @@
 //		Implementation of transform
 //---------------------------------------------------------------------------
 
+#include "gpopt/xforms/CXformInnerJoin2NLJoin.h"
+
 #include "gpos/base.h"
 
 #include "gpopt/operators/ops.h"
-#include "gpopt/xforms/CXformInnerJoin2NLJoin.h"
 #include "gpopt/xforms/CXformInnerJoin2HashJoin.h"
 #include "gpopt/xforms/CXformUtils.h"
 

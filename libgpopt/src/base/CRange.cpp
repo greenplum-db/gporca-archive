@@ -9,13 +9,13 @@
 //		Implementation of ranges
 //---------------------------------------------------------------------------
 
+#include "gpopt/base/CRange.h"
+
 #include "gpos/base.h"
 
-#include "gpopt/base/CRange.h"
 #include "gpopt/base/CUtils.h"
 #include "gpopt/base/IComparator.h"
 #include "gpopt/operators/CPredicateUtils.h"
-
 #include "naucrates/md/IMDScalarOp.h"
 
 using namespace gpopt;

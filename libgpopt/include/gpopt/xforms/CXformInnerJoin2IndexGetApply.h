@@ -12,6 +12,7 @@
 #define GPOPT_CXformInnerJoin2IndexGetApply_H
 
 #include "gpos/base.h"
+
 #include "gpopt/xforms/CXformJoin2IndexApplyBase.h"
 
 namespace gpopt

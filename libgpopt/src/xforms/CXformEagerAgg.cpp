@@ -13,15 +13,16 @@
 //			(since the inner child alternative will be explored through
 //			 commutativity)
 //---------------------------------------------------------------------------
+#include "gpopt/xforms/CXformEagerAgg.h"
+
 #include "gpos/base.h"
 
-#include "naucrates/md/IMDAggregate.h"
-#include "naucrates/md/CMDScalarOpGPDB.h"
+#include "gpopt/base/CColRefSetIter.h"
 #include "gpopt/operators/ops.h"
 #include "gpopt/xforms/CXformExploration.h"
-#include "gpopt/xforms/CXformEagerAgg.h"
 #include "gpopt/xforms/CXformUtils.h"
-#include "gpopt/base/CColRefSetIter.h"
+#include "naucrates/md/CMDScalarOpGPDB.h"
+#include "naucrates/md/IMDAggregate.h"
 
 using namespace gpopt;
 using namespace gpmd;

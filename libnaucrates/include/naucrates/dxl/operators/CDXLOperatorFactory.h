@@ -12,21 +12,22 @@
 #ifndef GPDXL_CDXLOperatorFactory_H
 #define GPDXL_CDXLOperatorFactory_H
 
-#include <xercesc/util/XMLUniDefs.hpp>
 #include <xercesc/sax2/Attributes.hpp>
 #include <xercesc/util/XMLString.hpp>
 #include <xercesc/util/XMLStringTokenizer.hpp>
+#include <xercesc/util/XMLUniDefs.hpp>
 
 #include "gpos/base.h"
+#include "gpos/common/CDouble.h"
+
+#include "naucrates/base/IDatum.h"
 #include "naucrates/dxl/operators/dxlops.h"
 #include "naucrates/dxl/xml/CDXLMemoryManager.h"
 #include "naucrates/dxl/xml/dxltokens.h"
-#include "naucrates/md/IMDId.h"
 #include "naucrates/md/CMDFunctionGPDB.h"
 #include "naucrates/md/CMDRelationGPDB.h"
+#include "naucrates/md/IMDId.h"
 #include "naucrates/md/IMDIndex.h"
-#include "naucrates/base/IDatum.h"
-#include "gpos/common/CDouble.h"
 
 // dynamic array of XML strings
 typedef CDynamicPtrArray<XMLCh, CleanupNULL> XMLChArray;

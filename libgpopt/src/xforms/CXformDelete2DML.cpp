@@ -9,12 +9,13 @@
 //		Implementation of transform
 //---------------------------------------------------------------------------
 
-#include "gpos/base.h"
 #include "gpopt/xforms/CXformDelete2DML.h"
-#include "gpopt/xforms/CXformUtils.h"
 
-#include "gpopt/operators/ops.h"
+#include "gpos/base.h"
+
 #include "gpopt/metadata/CTableDescriptor.h"
+#include "gpopt/operators/ops.h"
+#include "gpopt/xforms/CXformUtils.h"
 
 using namespace gpopt;
 

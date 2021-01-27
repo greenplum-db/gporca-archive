@@ -10,15 +10,14 @@
 //---------------------------------------------------------------------------
 
 #include "gpos/base.h"
-#include "gpopt/exception.h"
 
-#include "gpopt/base/CUtils.h"
 #include "gpopt/base/CCastUtils.h"
 #include "gpopt/base/CDistributionSpecAny.h"
 #include "gpopt/base/CDistributionSpecReplicated.h"
-
-#include "gpopt/operators/ops.h"
+#include "gpopt/base/CUtils.h"
+#include "gpopt/exception.h"
 #include "gpopt/operators/CExpressionHandle.h"
+#include "gpopt/operators/ops.h"
 
 using namespace gpopt;
 

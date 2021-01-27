@@ -14,12 +14,12 @@
 #define GPOPT_CExpressionPreprocessor_H
 
 #include "gpos/base.h"
-#include "gpopt/base/CUtils.h"
-#include "gpopt/base/CColumnFactory.h"
 
+#include "gpopt/base/CColumnFactory.h"
+#include "gpopt/base/CUtils.h"
+#include "gpopt/mdcache/CMDAccessor.h"
 #include "gpopt/operators/CExpression.h"
 #include "gpopt/operators/CScalarBoolOp.h"
-#include "gpopt/mdcache/CMDAccessor.h"
 
 namespace gpopt
 {

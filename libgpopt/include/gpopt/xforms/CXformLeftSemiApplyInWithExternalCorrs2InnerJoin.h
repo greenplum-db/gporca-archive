@@ -15,8 +15,9 @@
 #define GPOPT_CXformLeftSemiApplyInWithExternalCorrs2InnerJoin_H
 
 #include "gpos/base.h"
-#include "gpopt/xforms/CXformLeftSemiApplyWithExternalCorrs2InnerJoin.h"
+
 #include "gpopt/operators/ops.h"
+#include "gpopt/xforms/CXformLeftSemiApplyWithExternalCorrs2InnerJoin.h"
 
 
 namespace gpopt

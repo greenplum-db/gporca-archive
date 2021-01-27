@@ -9,10 +9,11 @@
 //		Implementation of pushing group by below join transform
 //---------------------------------------------------------------------------
 
+#include "gpopt/xforms/CXformPushGbWithHavingBelowJoin.h"
+
 #include "gpos/base.h"
 
 #include "gpopt/operators/ops.h"
-#include "gpopt/xforms/CXformPushGbWithHavingBelowJoin.h"
 #include "gpopt/xforms/CXformUtils.h"
 
 

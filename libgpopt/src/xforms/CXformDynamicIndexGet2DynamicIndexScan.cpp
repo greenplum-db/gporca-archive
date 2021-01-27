@@ -9,12 +9,13 @@
 //		Implementation of transform
 //---------------------------------------------------------------------------
 
-#include "gpos/base.h"
 #include "gpopt/xforms/CXformDynamicIndexGet2DynamicIndexScan.h"
 
-#include "gpopt/operators/ops.h"
+#include "gpos/base.h"
+
 #include "gpopt/metadata/CPartConstraint.h"
 #include "gpopt/metadata/CTableDescriptor.h"
+#include "gpopt/operators/ops.h"
 
 using namespace gpopt;
 

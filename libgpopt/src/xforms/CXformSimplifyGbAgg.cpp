@@ -10,13 +10,14 @@
 //		the minimal grouping columns based on functional dependencies
 //---------------------------------------------------------------------------
 
+#include "gpopt/xforms/CXformSimplifyGbAgg.h"
+
 #include "gpos/base.h"
 
-#include "gpopt/base/CUtils.h"
 #include "gpopt/base/CKeyCollection.h"
-#include "gpopt/operators/ops.h"
+#include "gpopt/base/CUtils.h"
 #include "gpopt/operators/COperator.h"
-#include "gpopt/xforms/CXformSimplifyGbAgg.h"
+#include "gpopt/operators/ops.h"
 
 using namespace gpmd;
 using namespace gpopt;

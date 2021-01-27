@@ -10,6 +10,7 @@
 //---------------------------------------------------------------------------
 
 #include "naucrates/base/IDatum.h"
+
 #include "naucrates/md/CMDTypeGenericGPDB.h"
 
 using namespace gpnaucrates;

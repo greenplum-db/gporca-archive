@@ -9,10 +9,12 @@
 //		Implementation of the transformation a logical difference all into LASJ
 //---------------------------------------------------------------------------
 
-#include "gpos/base.h"
-#include "gpopt/operators/ops.h"
-#include "gpopt/exception.h"
 #include "gpopt/xforms/CXformDifferenceAll2LeftAntiSemiJoin.h"
+
+#include "gpos/base.h"
+
+#include "gpopt/exception.h"
+#include "gpopt/operators/ops.h"
 #include "gpopt/xforms/CXformIntersectAll2LeftSemiJoin.h"
 #include "gpopt/xforms/CXformUtils.h"
 

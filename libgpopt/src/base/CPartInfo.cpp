@@ -9,8 +9,10 @@
 //		Implementation of derived partition information at the logical level
 //---------------------------------------------------------------------------
 
-#include "gpos/base.h"
 #include "gpopt/base/CPartInfo.h"
+
+#include "gpos/base.h"
+
 #include "gpopt/base/CUtils.h"
 #include "gpopt/metadata/CPartConstraint.h"
 

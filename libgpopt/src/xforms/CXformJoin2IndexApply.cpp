@@ -9,16 +9,16 @@
 //		Implementation of Inner/Outer Join to Apply transform
 //---------------------------------------------------------------------------
 
+#include "gpopt/xforms/CXformJoin2IndexApply.h"
+
 #include "gpos/base.h"
 
 #include "gpopt/base/CUtils.h"
-#include "gpopt/operators/ops.h"
 #include "gpopt/operators/CNormalizer.h"
 #include "gpopt/operators/CPredicateUtils.h"
+#include "gpopt/operators/ops.h"
 #include "gpopt/xforms/CSubqueryHandler.h"
-#include "gpopt/xforms/CXformJoin2IndexApply.h"
 #include "gpopt/xforms/CXformUtils.h"
-
 #include "naucrates/md/IMDIndex.h"
 
 using namespace gpmd;

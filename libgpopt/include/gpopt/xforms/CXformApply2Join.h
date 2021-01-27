@@ -12,10 +12,10 @@
 #define GPOPT_CXformApply2Join_H
 
 #include "gpos/base.h"
-#include "gpopt/operators/ops.h"
+
 #include "gpopt/operators/CNormalizer.h"
 #include "gpopt/operators/CPredicateUtils.h"
-
+#include "gpopt/operators/ops.h"
 #include "gpopt/xforms/CDecorrelator.h"
 #include "gpopt/xforms/CXformExploration.h"
 

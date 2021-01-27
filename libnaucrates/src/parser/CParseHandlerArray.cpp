@@ -10,8 +10,9 @@
 //---------------------------------------------------------------------------
 
 #include "naucrates/dxl/parser/CParseHandlerArray.h"
-#include "naucrates/dxl/parser/CParseHandlerFactory.h"
+
 #include "naucrates/dxl/operators/CDXLOperatorFactory.h"
+#include "naucrates/dxl/parser/CParseHandlerFactory.h"
 
 using namespace gpdxl;
 

@@ -9,12 +9,12 @@
 //		Implementation of transform
 //---------------------------------------------------------------------------
 
+#include "gpopt/xforms/CXformGbAggDedup2HashAggDedup.h"
+
 #include "gpos/base.h"
 
 #include "gpopt/operators/ops.h"
-
 #include "gpopt/xforms/CXformUtils.h"
-#include "gpopt/xforms/CXformGbAggDedup2HashAggDedup.h"
 
 using namespace gpopt;
 

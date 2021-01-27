@@ -10,13 +10,14 @@
 //		of intermediate results
 //---------------------------------------------------------------------------
 
+#include "gpopt/xforms/CXformExpandNAryJoinMinCard.h"
+
 #include "gpos/base.h"
 
 #include "gpopt/base/CUtils.h"
-#include "gpopt/operators/ops.h"
 #include "gpopt/operators/CNormalizer.h"
 #include "gpopt/operators/CPredicateUtils.h"
-#include "gpopt/xforms/CXformExpandNAryJoinMinCard.h"
+#include "gpopt/operators/ops.h"
 #include "gpopt/xforms/CJoinOrderMinCard.h"
 #include "gpopt/xforms/CXformUtils.h"
 

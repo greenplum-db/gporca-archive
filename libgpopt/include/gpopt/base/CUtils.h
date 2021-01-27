@@ -11,24 +11,24 @@
 #ifndef GPOPT_CUtils_H
 #define GPOPT_CUtils_H
 
-#include "gpos/error/CAutoTrace.h"
 #include "gpos/common/CHashSet.h"
+#include "gpos/error/CAutoTrace.h"
 
 #include "gpopt/base/CColRef.h"
+#include "gpopt/base/CDistributionSpecHashed.h"
 #include "gpopt/base/COrderSpec.h"
 #include "gpopt/base/CWindowFrame.h"
 #include "gpopt/metadata/CTableDescriptor.h"
 #include "gpopt/operators/CExpression.h"
+#include "gpopt/operators/CScalarAggFunc.h"
 #include "gpopt/operators/CScalarArrayCmp.h"
+#include "gpopt/operators/CScalarBoolOp.h"
 #include "gpopt/operators/CScalarCmp.h"
 #include "gpopt/operators/CScalarConst.h"
-#include "gpopt/operators/CScalarBoolOp.h"
 #include "gpopt/operators/CScalarProjectList.h"
 #include "gpopt/operators/CScalarSubquery.h"
-#include "gpopt/operators/CScalarAggFunc.h"
 #include "naucrates/md/CMDTypeInt4GPDB.h"
 #include "naucrates/statistics/IStatistics.h"
-#include "gpopt/base/CDistributionSpecHashed.h"
 
 // fwd declarations
 namespace gpmd

@@ -9,13 +9,14 @@
 //		Implementation of left outer join push down transformation
 //---------------------------------------------------------------------------
 
+#include "gpopt/xforms/CXformPushDownLeftOuterJoin.h"
+
 #include "gpos/base.h"
 
 #include "gpopt/base/CUtils.h"
-#include "gpopt/operators/ops.h"
 #include "gpopt/operators/CNormalizer.h"
 #include "gpopt/operators/CPredicateUtils.h"
-#include "gpopt/xforms/CXformPushDownLeftOuterJoin.h"
+#include "gpopt/operators/ops.h"
 
 
 using namespace gpopt;

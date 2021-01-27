@@ -9,8 +9,9 @@
 //		Implementation of transform
 //---------------------------------------------------------------------------
 
-#include "gpos/base.h"
 #include "gpopt/xforms/CXformSelect2Filter.h"
+
+#include "gpos/base.h"
 
 #include "gpopt/operators/ops.h"
 

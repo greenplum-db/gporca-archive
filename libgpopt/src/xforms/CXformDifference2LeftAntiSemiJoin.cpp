@@ -10,11 +10,13 @@
 //		converts it into an aggregate over a left anti-semi join
 //---------------------------------------------------------------------------
 
-#include "gpos/base.h"
-#include "gpopt/exception.h"
 #include "gpopt/xforms/CXformDifference2LeftAntiSemiJoin.h"
-#include "gpopt/xforms/CXformUtils.h"
+
+#include "gpos/base.h"
+
+#include "gpopt/exception.h"
 #include "gpopt/operators/ops.h"
+#include "gpopt/xforms/CXformUtils.h"
 
 using namespace gpopt;
 

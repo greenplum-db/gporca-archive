@@ -9,10 +9,11 @@
 //		Implementation of left outer nested-loops join operator
 //---------------------------------------------------------------------------
 
-#include "gpos/base.h"
-#include "gpopt/base/CUtils.h"
-
 #include "gpopt/operators/CPhysicalLeftOuterNLJoin.h"
+
+#include "gpos/base.h"
+
+#include "gpopt/base/CUtils.h"
 
 
 using namespace gpopt;
